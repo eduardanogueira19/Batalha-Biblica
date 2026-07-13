@@ -1,0 +1,142 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    
+    background:#0D1F16;
+    justify-content:center;
+    align-items:center;
+}
+
+header{
+    margin: 0;
+    background-color: #f4f4f4;
+    height: 60px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+h1{
+    color: #0D1F16;
+    font-size: 30pt;
+    font-weight: 900;
+}
+
+h2{
+    color: #0D1F16;
+    font-size: 20pt;
+    font-weight: 900;
+}
+
+a{
+    text-decoration: none;
+}
+
+h2:hover{
+    color: #3e8d56;
+}
+
+
+.card{
+    width:500px;
+    background:#F4F4F4;
+    border-radius:18px;
+    padding:35px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+
+.card h1{
+    text-align:center;
+    color:#14381F;
+    margin-bottom:10px;
+}
+
+.card p{
+    text-align:center;
+    color:#555;
+    margin-bottom:30px;
+}
+
+.equipe{
+    margin-bottom:20px;
+}
+
+.equipe label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:bold;
+    color:#14381F;
+}
+
+.campo{
+    display:flex;
+    gap:10px;
+}
+
+.campo input{
+    flex:1;
+    padding:12px;
+    border-radius:8px;
+    border:1px solid #ccc;
+    outline:none;
+    font-size:16px;
+}
+
+.campo input:focus{
+    border-color:#14381F;
+}
+
+.remover{
+    width:50px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    background:#e74c3c;
+    color:white;
+    font-size:18px;
+}
+
+.remover:hover{
+    background:#c0392b;
+}
+
+#adicionar{
+    width:100%;
+    margin-top:10px;
+    padding:14px;
+    border:none;
+    border-radius:8px;
+    background:#2ecc71;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
+#adicionar:hover{
+    background:#27ae60;
+}
+
+#salvar{
+    width:100%;
+    margin-top:15px;
+    padding:14px;
+    border:none;
+    border-radius:8px;
+    background:#14381F;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
+#salvar:hover{
+    background:#0D1F16;
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo das Palavras</title>
+    <link rel="stylesheet" href="../css/style-senha.css">
+</head>
+<body>
+   <header>
+        <a href="../index.html"><h2>Voltar</h2></a>
+    </header>
+
+    <div class="container">
+        <div class="ranking">
+            <div class="time primeiro" id="timeA">
+                <span>Reino do Sul</span>
+                <span id="placarA">0 pts</span>
+            </div>
+
+            <div class="time segundo" id="timeB">
+                <span>Reino do Norte</span>
+                <span id="placarB">0 pts</span>
+            </div>
+
+        </div>
+        
+
+        <div class="relogio">
+            <img src="../imagem/time.png" alt="Imagem Timer">
+            <div class="timer">01:00</div>
+        </div>
+
+        <div class="contador-palavras">
+            Palavra <span id="contadorPalavras">1</span>/5
+        </div>
+
+        <div class="principal">
+            <div class="reinoSul">
+                <img src="../imagem/reino-sul.png" alt="" srcset="">
+                <h2>Palavras:</h2>
+                <ul id="listaSul"></ul>
+
+            </div>
+
+            <div class="palavra">
+                <div class="card-palavra" id="palavra">
+                    ?
+                </div>
+            </div>
+            <div class="reinoNorte">
+                <img src="../imagem/reino-norte.png" alt="" srcset="">
+                <h2>Palavras:</h2>
+                <ul id="listaNorte"></ul>
+
+            </div>
+        </div>
+    
+        <div class="botoes">
+            <button id="iniciar">Iniciar</button>
+            <button id="proxima" disabled>Pular</button>
+            <button id="acertou" disabled>Acertei!</button>
+        </div>
+    </div>
+    <script src="../js/script-senha.js"></script>
+</body>
+</html>

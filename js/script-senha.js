@@ -204,7 +204,7 @@ class Jogo {
     }
 
     trocarEquipe(){
-
+       
         if(this.equipeAtual == "equipeA"){
 
             this.equipeAtual = "equipeB";
@@ -214,6 +214,7 @@ class Jogo {
             this.equipeAtual = "equipeA";
 
         }
+        this.destacarEquipe();
 
     }
 
@@ -343,6 +344,8 @@ class Jogo {
 
     finalizarRodada(){
 
+        this.destacarEquipe();
+
         clearInterval(this.intervalo);
 
         this.btnAcertou.disabled = true;
@@ -358,7 +361,7 @@ class Jogo {
         this.pendentes = [];
 
 
-        this.destacarEquipe();
+        
 
         this.trocarEquipe();
 

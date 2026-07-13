@@ -1,115 +1,25 @@
 const palavras = [
+    "Pequeno", "água", "livro", "Salomão","Nabote",
+    "Davi", "Deus","templo", "machado", "arca",
+    "Taça", "parque", "rei", "corvo","Monte",
+    "Ar", "bicicleta", "vitória", "Israel", "pão",
+    "Colher", "lepra", "bíblia", "Jezabel", "laranja",
+    "Chave", "gelado", "Bahia", "família","profeta",
+    "Hélice", "Justo", "boneca", "céu", "exército",
+    "Língua", "motorista", "povo", "Babilônia",
+    "Atraso", "mosca", "divisão", "celular", "terça",
+    "Quadro", "queda", "socorro", "aplicativo", "obreiro",
+    "Refresco", "vida", "história", "violão", "porta",
+    "Sal", "microfone", "espião", "ovelha", "som",
+    "Pimenta", "pé", "filho", "inimigo", "cantina",
+    "Gravata", "Eliseu", "milagre", "viúva", "pastor",
+    "Chocolate", "banco", "tapete", "vaso", "biscoito",
+    "Manga", "escuridão", "cura", "mesa", "teclado",
+    "Café", "cadeira", "Elias", "Guerra", "criança",
+    "Ataque", "rio", "caneta", "fone", "mapa",
+    "Conquista", "acampamento", "tanque", "barco",
+    "Mulher", "papel", "música", "direção", "mídia"
 
-    // Reis
-    "Salomão",
-    "Roboão",
-    "Jeroboão",
-    "Acabe",
-    "Acazias",
-    "Jorão",
-    "Jeú",
-    "Joás",
-    "Amazias",
-    "Uzias",
-    "Jotão",
-    "Acaz",
-    "Ezequias",
-    "Manassés",
-    "Amom",
-    "Josias",
-    "Jeoaquim",
-    "Zedequias",
-
-    // Profetas
-    "Elias",
-    "Eliseu",
-    "Natã",
-    "Aías",
-    "Micaías",
-    "Isaías",
-    "Hulda",
-
-    // Mulheres
-    "Jezabel",
-    "Atalia",
-    "Rainha de Sabá",
-    "Viúva",
-    "Sunamita",
-
-    // Lugares
-    "Jerusalém",
-    "Samaria",
-    "Israel",
-    "Judá",
-    "Monte Carmelo",
-    "Jordão",
-    "Jericó",
-    "Damasco",
-    "Babilônia",
-    "Egito",
-    "Sarepta",
-
-    // Objetos e construções
-    "Templo",
-    "Altar",
-    "Arca da Aliança",
-    "Trono",
-    "Carruagem",
-    "Carro de fogo",
-    "Machado",
-    "Azeite",
-    "Lenha",
-
-    // Acontecimentos
-    "Divisão do Reino",
-    "Cativeiro",
-    "Exílio",
-    "Sacrifício",
-    "Milagre",
-    "Profecia",
-    "Fome",
-    "Seca",
-    "Chuva",
-    "Ressurreição",
-
-    // Histórias
-    "Monte Carmelo",
-    "Profetas de Baal",
-    "Corvos",
-    "Farinha",
-    "Azeite",
-    "Naamã",
-    "Lepra",
-    "Machado Flutuou",
-    "Urso",
-    "Carro de Fogo",
-    "Caverna",
-    "Monte Horebe",
-    "Fonte de Jericó",
-
-    // Pessoas
-    "Baal",
-    "Obadias",
-    "Geazi",
-    "Ben-Hadade",
-    "Senaqueribe",
-    "Rabsaqué",
-    "Joabe",
-    "Abiatar",
-    "Adonias",
-    "Absalão",
-
-    // Conceitos
-    "Ídolos",
-    "Arrependimento",
-    "Obediência",
-    "Aliança",
-    "Sabedoria",
-    "Justiça",
-    "Fidelidade",
-    "Pecado",
-    "Oração",
-    "Unção"
 ];
 
 class Jogo {
@@ -118,7 +28,7 @@ class Jogo {
         this.tempo = 60;
         this.intervalo = null;
 
-        this.equipeAtual = "equipeA";
+        this.equipeAtual = estado.equipeAtual;
         this.timeA = document.getElementById("timeA");
         this.timeB = document.getElementById("timeB");
         this.listaSul = document.getElementById("listaSul");
@@ -132,11 +42,6 @@ class Jogo {
         this.palavraAtual = "";
         this.contadorPalavras = document.getElementById("contadorPalavras");
         this.palavraAtualEhPendente = false;
-
-        this.pontuacao = {
-            equipeA:0,
-            equipeB:0
-        };
 
         this.palavrasDisponiveis = [...palavras];
 
@@ -205,16 +110,16 @@ class Jogo {
 
     trocarEquipe(){
        
-        if(this.equipeAtual == "equipeA"){
+        this.equipeAtual =
+        this.equipeAtual === "equipeA"
+            ? "equipeB"
+            : "equipeA";
 
-            this.equipeAtual = "equipeB";
+    estado.equipeAtual = this.equipeAtual;
 
-        }else{
+    salvarEstado();
 
-            this.equipeAtual = "equipeA";
-
-        }
-        this.destacarEquipe();
+    this.destacarEquipe();
 
     }
 
@@ -324,24 +229,15 @@ class Jogo {
 
         this.registrarPalavra(true, this.palavraAtual);
 
-        this.pontuacao[this.equipeAtual]++;
+        adicionarPonto(this.equipeAtual);
 
-        this.atualizarPlacar();
+        atualizarPlacar();
 
         this.mostrarPalavra();
 
     }
 
-    atualizarPlacar(){
-
-        this.placarA.innerHTML =
-            this.pontuacao.equipeA + " pts";
-
-        this.placarB.innerHTML =
-            this.pontuacao.equipeB + " pts";
-
-    }
-
+   
     finalizarRodada(){
 
         this.destacarEquipe();
@@ -371,5 +267,6 @@ class Jogo {
     }
 }
 
-
 const jogo = new Jogo();
+
+atualizarPlacar();

@@ -39,7 +39,7 @@ h2:hover{
     display:flex;
     justify-content:center;
     align-items:center;
-    min-height:100vh;
+    min-height: 70vh;
 }
 
 .card{
@@ -103,4 +103,40 @@ button{
 button:hover{
     background-color: #14381F;
     border-color: #f4f4f4;
+}
+
+.add-dim input{
+    width: 200px;
+    height: 50px;
+    border-radius: 15px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 20pt;
+}
+
+.add-dim button{
+    width: 200px;
+}
+
+.add-dim{
+    width: 400px;
+    margin: auto;
+    padding: 0px;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+#timeSelecionado{
+    width: 200px;
+    height: 50px;
+    border-radius: 15px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 18pt;
+    color: #0D1F16;
+    font-weight: 700;
 }

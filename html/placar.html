@@ -3,16 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jogo das Palavras</title>
+    <title>Placar</title>
     <link rel="stylesheet" href="../css/style-placar.css">
 </head>
 <body>
-   <header>
-        <a href="../index.html"><h2>Voltar</h2></a>
-        <h1>Senha</h1>
-        <a href="http://"><h2>Placar</h2></a>
-    </header>
-    <div class="container">
+
+<header>
+    <a href="../index.html"><h2>Voltar</h2></a>
+    <h1>Senha</h1>
+    <a href="#"><h2>Placar</h2></a>
+</header>
+
+<div class="container">
 
     <div class="card">
 
@@ -22,20 +24,49 @@
 
             <div class="time primeiro">
                 <span>Reino do Sul</span>
-                <span>0 pts</span>
+                <span id="placarA">0 pts</span>
             </div>
 
             <div class="time segundo">
                 <span>Reino do Norte</span>
-                <span>0 pts</span>
+                <span id="placarB">0 pts</span>
             </div>
-
 
         </div>
 
-        <button>Reiniciar Pontuação</button>
+        <button onclick="zerarPlacar()">
+            Reiniciar Pontuação
+        </button>
 
     </div>
+
+</div>
+
+<div class="add-dim">
+
+    <select id="timeSelecionado">
+        <option value="equipeA">Reino do Sul</option>
+        <option value="equipeB">Reino do Norte</option>
+    </select>
+
+    <input
+        type="number"
+        id="quantidade"
+        value="1"
+        min="1"
+        placeholder="Pontuação">
+
+    <button onclick="alterarPontuacao('adicionar')">
+        Adicionar
+    </button>
+
+    <button onclick="alterarPontuacao('remover')">
+        Remover
+    </button>
+
+</div>
+
+<script src="../js/placar.js"></script>
 
 </body>
 </html>

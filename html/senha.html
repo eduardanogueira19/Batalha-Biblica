@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jogo das Palavras</title>
+    <title>Qual é a senha?</title>
     <link rel="stylesheet" href="../css/style-senha.css">
 </head>
 <body>
@@ -32,7 +32,7 @@
         </div>
 
         <div class="contador-palavras">
-            Palavra <span id="contadorPalavras">1</span>/5
+            Palavra: <span id="contadorPalavras"> 1</span>/5
         </div>
 
         <div class="principal">
@@ -44,7 +44,7 @@
             </div>
 
             <div class="palavra">
-                <div class="card-palavra" id="palavra">
+                <div class="card-palavra" id="palavra" style="text-transform: uppercase;">
                     ?
                 </div>
             </div>
@@ -62,6 +62,9 @@
             <button id="acertou" disabled>Acertei!</button>
         </div>
     </div>
+
+    <script src="../js/placar.js"></script>
+    <script src="../js/estadoJogo.js"></script>
     <script src="../js/script-senha.js"></script>
 </body>
 </html>

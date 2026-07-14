@@ -116,20 +116,38 @@ input.addEventListener("keypress", function(e){
 });
 
 
-function trocarEquipe(){
 
-    equipeAtual = equipeAtual === "A" ? "B" : "A";
 
-    // Salva a equipe atual para os outros jogos
+function destacarEquipe() {
+
+    timeA.classList.remove("ativa");
+    timeB.classList.remove("ativa");
+
+    if (equipeAtual === "equipeA") {
+        timeA.classList.add("ativa");
+    } else {
+        timeB.classList.add("ativa");
+    }
+
+}
+
+function trocarEquipe() {
+
+    equipeAtual =
+        equipeAtual === "equipeA"
+            ? "equipeB"
+            : "equipeA";
+
     estado.equipeAtual = equipeAtual;
     salvarEstado();
 
-    timeA.classList.toggle("ativa", equipeAtual === "equipeA");
-    timeB.classList.toggle("ativa", equipeAtual === "equipeB");
+    destacarEquipe();
 
 }
 
 function iniciarRodada() {
+
+    destacarEquipe()
 
     rodadaAtual = rodadas[indiceRodada];
 
@@ -246,10 +264,7 @@ function revelarLetra(letra){
 
     if (quantidade > 0) {
 
-        adicionarPonto(
-            equipeAtual === "A" ? "equipeA" : "equipeB",
-            quantidade
-        );
+        adicionarPonto(equipeAtual, quantidade);
 
         atualizarPlacar();
 
@@ -295,19 +310,14 @@ function proximaRodada() {
     indiceRodada++;
 
     if (indiceRodada >= rodadas.length) {
-
         alert("Fim do jogo!");
-
         indiceRodada = 0;
-
     }
 
     iniciarRodada();
 
 }
 atualizarPlacar();
-
-timeA.classList.toggle("ativa", equipeAtual === "A");
-timeB.classList.toggle("ativa", equipeAtual === "B");
-
 iniciarRodada();
+destacarEquipe();  
+

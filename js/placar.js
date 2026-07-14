@@ -7,6 +7,9 @@ if (!placar) {
     };
 }
 
+placar.reinoSul = Number(placar.reinoSul) || 0;
+placar.reinoNorte = Number(placar.reinoNorte) || 0;
+
 function salvarPlacar() {
     localStorage.setItem("placar", JSON.stringify(placar));
 }
@@ -22,12 +25,15 @@ function atualizarPlacar() {
     atualizarRanking();
 }
 
-function adicionarPonto(time) {
+function adicionarPonto(time, pontos) {
+
+    placar.reinoSul = Number(placar.reinoSul) || 0;
+    placar.reinoNorte = Number(placar.reinoNorte) || 0;
 
     if (time === "equipeA") {
-        placar.reinoSul++;
+        placar.reinoSul += pontos;
     } else {
-        placar.reinoNorte++;
+        placar.reinoNorte += pontos;
     }
 
     salvarPlacar();

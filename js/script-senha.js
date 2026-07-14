@@ -74,14 +74,10 @@ class Jogo {
         this.timeA.classList.remove("ativa");
         this.timeB.classList.remove("ativa");
 
-        if(this.equipeAtual == "equipeA"){
-
+        if (this.equipeAtual === "equipeA") {
             this.timeA.classList.add("ativa");
-
-        }else{
-
+        } else {
             this.timeB.classList.add("ativa");
-
         }
 
     }
@@ -229,7 +225,7 @@ class Jogo {
 
         this.registrarPalavra(true, this.palavraAtual);
 
-        adicionarPonto(this.equipeAtual);
+        adicionarPonto(this.equipeAtual, 1);
 
         atualizarPlacar();
 

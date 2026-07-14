@@ -147,7 +147,7 @@ function trocarEquipe() {
 
 function iniciarRodada() {
 
-    destacarEquipe()
+    
 
     rodadaAtual = rodadas[indiceRodada];
 

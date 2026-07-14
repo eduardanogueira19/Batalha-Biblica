@@ -1,11 +1,15 @@
 *{
     margin: 0;
 }
+
 body {
+    margin: 0;
+    height: 100vh;
     font-family: Arial, sans-serif;
-    background: #14381F;
     justify-content: center;
     align-items: center;
+    background-color: #0D1F16;
+    overflow: hidden;
 }
 
 h1{
@@ -28,7 +32,7 @@ main{
 }
 
 .img-botao{
-    background-color: #0D1F16;
+    background-color: #0535144b;
     border-radius: 15px 15px 15px 15px;
     display: grid;
     align-items: center;
@@ -70,4 +74,9 @@ button:hover{
     background-color: #053514;
     color: #f4f4f4;
     border-color: #f4f4f4;
+}
+
+.reiniciar{
+    display: block;
+    margin: 40px auto 0;
 }

@@ -317,7 +317,8 @@ function proximaRodada() {
     iniciarRodada();
 
 }
+destacarEquipe();  
 atualizarPlacar();
 iniciarRodada();
-destacarEquipe();  
+
 

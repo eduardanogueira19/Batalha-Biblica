@@ -69,6 +69,7 @@ function alterarPontuacao(acao) {
 
     salvarPlacar();
     atualizarPlacar();
+    document.getElementById("quantidade").value = "";
 }
 
 function zerarPlacar() {

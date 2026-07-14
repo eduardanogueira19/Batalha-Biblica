@@ -67,17 +67,19 @@ class Jogo {
             this.proximaPalavra();
         });
 
+        this.destacarEquipe();
+
     }
 
-    destacarEquipe(){
+    destacarEquipe() {
 
         this.timeA.classList.remove("ativa");
         this.timeB.classList.remove("ativa");
 
         if (this.equipeAtual === "equipeA") {
-            this.timeB.classList.add("ativa");
-        } else {
             this.timeA.classList.add("ativa");
+        } else {
+            this.timeB.classList.add("ativa");
         }
 
     }
@@ -106,19 +108,18 @@ class Jogo {
 
     }
 
-    trocarEquipe(){
-       
+    trocarEquipe() {
+
         this.equipeAtual =
-        this.equipeAtual === "equipeA"
-            ? "equipeB"
-            : "equipeA";
+            this.equipeAtual === "equipeA"
+                ? "equipeB"
+                : "equipeA";
 
-    estado.equipeAtual = this.equipeAtual;
+        estado.equipeAtual = this.equipeAtual;
 
-    salvarEstado();
+        salvarEstado();
 
-    this.destacarEquipe();
-
+        this.destacarEquipe();
     }
 
    mostrarPalavra(){
@@ -237,8 +238,6 @@ class Jogo {
 
    
     finalizarRodada(){
-
-        this.destacarEquipe();
 
         clearInterval(this.intervalo);
 

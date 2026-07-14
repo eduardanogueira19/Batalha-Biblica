@@ -75,14 +75,16 @@ class Jogo {
         this.timeB.classList.remove("ativa");
 
         if (this.equipeAtual === "equipeA") {
-            this.timeA.classList.add("ativa");
-        } else {
             this.timeB.classList.add("ativa");
+        } else {
+            this.timeA.classList.add("ativa");
         }
 
     }
 
     iniciarRodada(){
+
+        this.destacarEquipe();
 
         this.btnIniciar.disabled = true;
         this.palavrasMostradas = 0;
@@ -96,7 +98,7 @@ class Jogo {
         this.btnAcertou.disabled = false;
         this.btnProxima.disabled = false;
 
-        this.destacarEquipe();
+        
 
         this.mostrarPalavra();
 

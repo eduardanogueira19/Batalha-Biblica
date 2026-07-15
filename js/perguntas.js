@@ -19,6 +19,50 @@ const perguntas = [
             "Jeú"
         ],
         resposta: 0
+    },
+
+    {
+        pergunta: "Quem construiu o templo em Jerusalém?",
+        alternativas: [
+            "Davi",
+            "Salomão",
+            "Josias",
+            "Elias"
+        ],
+        resposta: 1
+    },
+
+    {
+        pergunta: "Quem dividiu o reino de Israel?",
+        alternativas: [
+            "Roboão",
+            "Acabe",
+            "Josafá",
+            "Jeú"
+        ],
+        resposta: 0
+    },
+
+    {
+        pergunta: "Quem construiu o templo em Jerusalém?",
+        alternativas: [
+            "Davi",
+            "Salomão",
+            "Josias",
+            "Elias"
+        ],
+        resposta: 1
+    },
+
+    {
+        pergunta: "Quem dividiu o reino de Israel?",
+        alternativas: [
+            "Roboão",
+            "Acabe",
+            "Josafá",
+            "Jeú"
+        ],
+        resposta: 0
     }
 ];
 
@@ -31,6 +75,7 @@ let indicePerguntaAtual;
 let respostaSelecionada = null;
 
 let equipeAtual = estado.equipeAtual;
+let pontos = 3;
 
 const letras = ["A","B","C","D"];
 const timeA = document.getElementById("timeA");
@@ -89,7 +134,6 @@ function trocarEquipe() {
 }
 
 function carregarPergunta(){
-
     indicePerguntaAtual = Math.floor(
         Math.random() * perguntasDisponiveis.length
     );
@@ -122,6 +166,7 @@ function carregarPergunta(){
 
     conferirResposta.disabled = true;
     proximaPergunta.disabled = true;
+    passarPergunta.disabled = false;
 
 }
 
@@ -156,7 +201,7 @@ conferirResposta.onclick = ()=>{
 
     }else{
 
-        adicionarPonto(estado.equipeAtual, 1);
+        adicionarPonto(estado.equipeAtual, pontos);
         atualizarPlacar();
 
     }
@@ -170,7 +215,7 @@ conferirResposta.onclick = ()=>{
 };
 
 proximaPergunta.onclick = ()=>{
-
+    pontos = 3;
     trocarEquipe();
 
     if(perguntasDisponiveis.length == 0){
@@ -188,8 +233,15 @@ proximaPergunta.onclick = ()=>{
 passarPergunta.onclick = ()=>{
 
     trocarEquipe();
+    
+    pontos--;
 
-    carregarPergunta();
+    if (pontos === 1){
+        proximaPergunta.disabled = false;
+        passarPergunta.disabled = true;
+    } 
+
+    
 
 };
 

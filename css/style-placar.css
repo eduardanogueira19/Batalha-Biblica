@@ -139,3 +139,10 @@ button:hover{
     color: #0D1F16;
     font-weight: 700;
 }
+
+.btnp{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}

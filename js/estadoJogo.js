@@ -16,6 +16,10 @@ function salvarEstado() {
 
 function reiniciarJogo() {
 
+    if (!confirm("Deseja realmente reiniciar o jogo todo?")) {
+        return;
+    }
+
     localStorage.removeItem("estado");
     localStorage.removeItem("placar");
     localStorage.removeItem("palavrasUsadas");

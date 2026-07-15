@@ -36,6 +36,8 @@ class Jogo {
 
         this.limitePalavras = 5;
         this.palavrasMostradas = 0;
+        this.indicePalavra = 0;
+        
 
         this.pendentes = [];
 
@@ -55,6 +57,7 @@ class Jogo {
         this.placarA = document.getElementById("placarA");
         this.placarB = document.getElementById("placarB");
 
+
         this.btnIniciar.addEventListener("click", () => {
             this.iniciarRodada();
         });
@@ -68,6 +71,10 @@ class Jogo {
         });
 
         this.destacarEquipe();
+        this.carregarPalavrasDaRodada();
+        this.equipesDaRodada = 0;
+        this.limparNaProximaRodada = false;
+
 
     }
 
@@ -84,7 +91,31 @@ class Jogo {
 
     }
 
+    carregarPalavrasDaRodada() {
+
+        this.palavrasDisponiveis = palavras.slice(
+            this.indicePalavra,
+            this.indicePalavra + this.limitePalavras
+        );
+
+        this.indicePalavra += this.limitePalavras;
+
+    }
+
     iniciarRodada(){
+       if (this.limparNaProximaRodada) {
+
+            this.listaSul.innerHTML = "";
+            this.listaNorte.innerHTML = "";
+
+            this.limparNaProximaRodada = false;
+
+        }
+
+
+        if (this.palavrasDisponiveis.length === 0) {
+            this.carregarPalavrasDaRodada();
+        }
 
         this.destacarEquipe();
 
@@ -100,8 +131,6 @@ class Jogo {
         this.btnAcertou.disabled = false;
         this.btnProxima.disabled = false;
 
-        
-
         this.mostrarPalavra();
 
         this.iniciarTimer();
@@ -109,6 +138,7 @@ class Jogo {
     }
 
     trocarEquipe() {
+        
 
         this.equipeAtual =
             this.equipeAtual === "equipeA"
@@ -120,6 +150,7 @@ class Jogo {
         salvarEstado();
 
         this.destacarEquipe();
+        
     }
 
    mostrarPalavra(){
@@ -239,6 +270,17 @@ class Jogo {
    
     finalizarRodada(){
 
+       this.equipesDaRodada++;
+
+        if (this.equipesDaRodada === 2) {
+
+            this.equipesDaRodada = 0;
+            this.carregarPalavrasDaRodada();
+
+            this.limparNaProximaRodada = true;
+
+        }
+
         clearInterval(this.intervalo);
 
         this.btnAcertou.disabled = true;
@@ -253,13 +295,21 @@ class Jogo {
 
         this.pendentes = [];
 
+        if (this.palavrasDisponiveis.length === 0) {
+            this.carregarPalavrasDaRodada();
+        }
 
-        
+  
 
         this.trocarEquipe();
 
         this.btnIniciar.disabled = false;
         this.contadorPalavras.textContent = "0";
+
+        
+
+        
+        
 
     }
 }

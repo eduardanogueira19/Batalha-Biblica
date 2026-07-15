@@ -93,7 +93,11 @@ h2:hover{
     width: 50%;
 }
 #palavra{
-    font-size: 50pt;
+    padding: 15px 15px;
+    font-size: 35pt;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
 }
 
 .card-perguntas {

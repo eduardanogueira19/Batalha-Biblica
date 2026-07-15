@@ -90,44 +90,6 @@ function atualizarRanking() {
     const primeiro = document.querySelector(".primeiro");
     const segundo = document.querySelector(".segundo");
 
-    if (placar.reinoSul > placar.reinoNorte) {
-
-        primeiro.innerHTML = `
-            <span>🥇 Reino do Sul</span>
-            <span id="placarA">${placar.reinoSul} pts</span>
-        `;
-
-        segundo.innerHTML = `
-            <span>🥈 Reino do Norte</span>
-            <span id="placarB">${placar.reinoNorte} pts</span>
-        `;
-
-    } else if (placar.reinoNorte > placar.reinoSul) {
-
-        primeiro.innerHTML = `
-            <span>🥇 Reino do Norte</span>
-            <span id="placarB">${placar.reinoNorte} pts</span>
-        `;
-
-        segundo.innerHTML = `
-            <span>🥈 Reino do Sul</span>
-            <span id="placarA">${placar.reinoSul} pts</span>
-        `;
-
-    } else {
-
-        primeiro.innerHTML = `
-            <span>🤝 Reino do Sul</span>
-            <span id="placarA">${placar.reinoSul} pts</span>
-        `;
-
-        segundo.innerHTML = `
-            <span>🤝 Reino do Norte</span>
-            <span id="placarB">${placar.reinoNorte} pts</span>
-        `;
-
-    }
-
 }
 
 // Atualiza quando a página abrir

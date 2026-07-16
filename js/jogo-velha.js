@@ -6,6 +6,8 @@ let equipeAtual = estado.equipeAtual;
 const timeA = document.getElementById("timeA");
 const timeB = document.getElementById("timeB");
 
+
+
 let jogoAtivo = true;
 let pontos = 5;
 let tabuleiro = [
@@ -14,9 +16,22 @@ let tabuleiro = [
     "", "", ""
 ];
 
+
+const letras = ["A", "B", "C"];
+
+casas.forEach((casa, index) => {
+    const linha = Math.floor(index / 3);
+    const coluna = (index % 3) + 1;
+
+    casa.dataset.posicao = `${letras[linha]}${coluna}`;
+});
+
+
 // coloque aqui as imagens das equipes
 const imagemA = "../imagem/reino-sul.png";
 const imagemB = "../imagem/reino-norte.png";
+
+
 
 const combinacoes = [
     [0,1,2],
@@ -29,9 +44,11 @@ const combinacoes = [
     [2,4,6]
 ];
 
+
 casas.forEach(casa=>{
     casa.addEventListener("click", jogar);
 });
+
 
 reiniciar.addEventListener("click", resetar);
 
@@ -74,12 +91,16 @@ function jogar(){
     const img = document.createElement("img");
 
     if(equipeAtual == "equipeA"){
+        
         img.src = imagemA;
     }else{
+       
         img.src = imagemB;
     }
 
     this.appendChild(img);
+
+    this.classList.add("ocupada");
 
     verificar();
 
@@ -143,6 +164,7 @@ function resetar(){
 
     casas.forEach(casa => {
         casa.innerHTML = "";
+        casa.classList.remove("ocupada");
     });
 
     destacarEquipe();

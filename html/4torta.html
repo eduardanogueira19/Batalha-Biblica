@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Torta na Cara</title>
+    <link rel="stylesheet" href="../css/style-torta.css">
+</head>
+<body>
+   <header>
+        <a href="../index.html"><h2>Voltar</h2></a>
+    </header>
+
+    <div class="container">
+        <div class="ranking">
+            <div class="time primeiro" id="timeA">
+                <span>Reino do Sul</span>
+                <span id="placarA">0 pts</span>
+            </div>
+
+            <div class="time segundo" id="timeB">
+                <span>Reino do Norte</span>
+                <span id="placarB">0 pts</span>
+            </div>
+
+        </div>
+
+        <select id="timeSelecionado">
+            <option value="equipeA">Reino do Sul</option>
+            <option value="equipeB">Reino do Norte</option>
+        </select>
+
+        <div class="principal">
+            <div class="pergunta">
+                <div class="card-perguntas" id="palavra" style="text-transform: uppercase;">
+                    ?
+                </div>
+            </div> 
+        </div>
+
+        <div class="alternativas">
+            <button id="A">A - </button>
+            <button id="B">B - </button>
+            <button id="C">C - </button>
+            <button id="D">D - </button>
+        </div>
+    
+        <div class="botoes">
+
+            <button id="proximaPergunta">Próxima</button>
+            <button id="conferirResposta" disabled>Confirmar</button>
+        </div>
+    </div>
+
+    <script src="../js/placar.js"></script>
+    <script src="../js/estadoJogo.js"></script>
+    <script src="../js/torta.js"></script>
+</body>
+</html>

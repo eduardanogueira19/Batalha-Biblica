@@ -1,6 +1,7 @@
 *{
     margin: 0;
 }
+
 body {
     font-family: Arial, sans-serif;
     background: #0D1F16;
@@ -38,91 +39,49 @@ h2:hover{
     align-items: center;
 }
 
-.relogio{
-    display: flex;
-    align-items: center; /* Alinha verticalmente */
-    justify-content: center; /* Centraliza os dois elementos */
-    gap: 5px; /* Espaço entre a imagem e o tempo */
-    margin-top: 15px;
-}
-
-.relogio img {
-    width: 50px; /* Ajuste conforme desejar */
-    height: 60px;
-}
-
-.timer {
-    font-size: 40px;
-    font-weight: bold;
-    color: #f4f4f4;
-}
 
 .principal{
+    
+    width: 100vw;
     height: auto;
     display: flex;
-    justify-content:center;
+    justify-content:space-between;
     align-items: center;
-    gap: 30px;
+
 }
 
 .reinoSul{
-   
-    margin-top: -100px;
-    width: 300px;
-    height: 500px;
+    margin-left: 50px;
+    width: 200px;
+    height: 400px;
     justify-content: center;
     align-items: center;
 }
 
 .reinoSul img{
-    width: 300px;
-    height: 300px;
+    width: 200px;
+    height: 200px;
 }
 
-.reinoSul h2{
-    align-items: center;
-    text-align: center;
-    font-size: 16pt;
 
-}
 
-.reinoSul p{
-    align-items: center;
-    text-align: center;
-    font-size: 12pt;
-    color: #f4f4f4;
-    
-}
+
 
 .reinoNorte{
-    margin-top: -100px;
-    width: 300px;
-    height: 500px;
+    margin-right: 50px;
+    width: 200px;
+    height: 400px;
+    display: flexbox;
     justify-content: center;
     align-items: center;
 }
 
 .reinoNorte img{
-    width: 300px;
-    height: 300px;
+    width: 200px;
+    height: 200px;
 }
 
-.reinoNorte h2{
-    align-items: center;
-    text-align: center;
-    font-size: 16pt;
-
-}
-
-.reinoNorte p{
-    align-items: center;
-    text-align: center;
-    font-size: 12pt;
-    color: #f4f4f4;
-    
-}
-
-.palavra {
+.pergunta {
     margin-top: 10px;
     flex: 1; 
     display: flex;
@@ -132,14 +91,16 @@ h2:hover{
     font-weight: bold;
     color: #0D1F16;
     width: 50%;
-    text-align: center;
 }
-
 #palavra{
-    font-size: 50pt;
+    padding: 15px 15px;
+    font-size: 35pt;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
 }
 
-.card-palavra {
+.card-perguntas {
     width: 700px;
     height: 350px;
     background: white;
@@ -149,6 +110,14 @@ h2:hover{
     align-items: center;
     font-size: 80px;
     font-weight: bold;
+}
+
+.alternativas{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 30px;
+
 }
 
 .botoes {
@@ -167,12 +136,6 @@ button{
     border-color: #14381F;
     font-weight: bold;
     font-size: 20pt;
-}
-
-button:hover{
-    background-color: #14381F;
-    
-    border-color: #f4f4f4;
 }
 
 .ranking{
@@ -237,20 +200,26 @@ li{
 
 .acerto{
     background:#2ecc71;
-    color: #14381F;
-    text-transform: capitalize;
 }
 
 .erro{
     background:#e74c3c;
-    color: #580c03;
-    text-transform: capitalize;
 }
 
-.contador-palavras{
-    color: #f4f4f4;
-    font-size: 16pt;
-    font-weight: 500;
-    display: flex;
-    margin-top: 15px;
+
+
+.selecionada{
+    background:#3498db;
+    color:white;
 }
+
+.correta{
+    background:#2ecc71;
+    color:white;
+}
+
+.errada{
+    background:#e74c3c;
+    color:white;
+}
+

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dicas</title>
+    <link rel="stylesheet" href="../css/style-jogo-palavras.css">
+</head>
+<body>
+     <header>
+        <a href="../index.html"><h2>Voltar</h2></a>
+    </header>
+
+    <div class="container">
+
+        <div class="ranking">
+
+            <div class="time primeiro" id="timeA">
+                <span>Reino do Sul</span>
+                <span id="placarA">0 pts</span>
+            </div>
+
+            <div class="time segundo" id="timeB">
+                <span>Reino do Norte</span>
+                <span id="placarB">0 pts</span>
+            </div>
+
+        </div>
+
+        
+        <div class="descartadas">
+            <h3>Letras descartadas</h3>
+
+            <div id="letrasErradas"></div>
+        </div>
+
+        <div class="painel">
+
+            <div id="painelPalavra">
+                
+            </div>
+
+        </div>
+
+        <h1 id="dica"></h1>
+
+
+        <div class="entrada">
+
+            <input
+                type="text"
+                id="letra"
+                maxlength="1"
+                autocomplete="off" placeholder="LETRA" style="text-align: center;"
+            >
+            <button id="btnChutar">
+                Chutar
+            </button>
+            <button id="btnResposta">
+                Chutar resposta
+            </button>
+
+        </div>
+    </div>
+    
+    <script src="../js/placar.js"></script>
+    <script src="../js/estadoJogo.js"></script>
+    <script src="../js/script-jogo-palavras.js"></script>
+</body>
+</html>

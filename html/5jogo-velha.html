@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Velha</title>
+    <link rel="stylesheet" href="../css/style-jogo-velha.css">
+</head>
+<body>
+   <header>
+        <a href="../index.html"><h2>Voltar</h2></a>
+    </header>
+    <div class="container">
+        <div class="ranking">
+            <div class="time primeiro" id="timeA">
+                <span>Reino do Sul</span>
+                <span id="placarA">0 pts</span>
+            </div>
+
+            <div class="time segundo" id="timeB">
+                <span>Reino do Norte</span>
+                <span id="placarB">0 pts</span>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="tabuleiro">
+    <div class="casa" data-index="0"></div>
+    <div class="casa" data-index="1"></div>
+    <div class="casa" data-index="2"></div>
+
+    <div class="casa" data-index="3"></div>
+    <div class="casa" data-index="4"></div>
+    <div class="casa" data-index="5"></div>
+
+    <div class="casa" data-index="6"></div>
+    <div class="casa" data-index="7"></div>
+    <div class="casa" data-index="8"></div>
+</div>
+
+    <h2 id="resultado"></h2>
+
+    <button id="reiniciar">Reiniciar</button>
+
+<script src="../js/placar.js"></script>
+<script src="../js/estadoJogo.js"></script>
+<script src="../js/jogo-velha.js"></script>
+
+</body>
+</html>

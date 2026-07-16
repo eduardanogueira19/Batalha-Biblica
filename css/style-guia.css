@@ -51,13 +51,14 @@ h2:hover{
 main{
     margin: auto;
     width: 90vw;
-    display: flex;
+    display:grid;
+    grid-template-columns:repeat(3,250px);
     justify-content: center;
     align-items: center;
     padding: 15px;
     flex-wrap: wrap;
     margin-top: 150px;
-    gap: 20px;
+    gap: 50px;
 }
 
 .botoes {

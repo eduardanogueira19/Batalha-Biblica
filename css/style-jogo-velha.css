@@ -10,7 +10,7 @@ body {
 
 header{
     margin-left: 30px;
-    height: 50px;
+    height: 60px;
     display: flex;
     justify-content: left;
     align-items: center;
@@ -32,33 +32,13 @@ header h2:hover{
 
 
 .container {
-    margin-top: 10px;
+    margin-top: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.relogio{
-    display: flex;
-    align-items: center; /* Alinha verticalmente */
-    justify-content: center; /* Centraliza os dois elementos */
-    gap: 5px; /* Espaço entre a imagem e o tempo */
-    margin-top: 15px;
-}
-
-.relogio img {
-    width: 50px; /* Ajuste conforme desejar */
-    height: 60px;
-}
-
-.timer {
-    font-size: 40px;
-    font-weight: bold;
-    color: #f4f4f4;
-}
-
 .principal{
-    
     width: 100vw;
     height: auto;
     display: flex;
@@ -130,15 +110,10 @@ header h2:hover{
 
 }
 
-.botoes {
-    margin-top: 20px;
-    display: flex;
-    gap: 2px;
-    justify-content: center;
-    align-items: center;
-}
+
 
 button{
+    margin-top: 300px;
     width: 300px;
     height: 50px;
     border-radius: 10px;
@@ -151,6 +126,7 @@ button{
 button:hover{
     background-color: #14381F;
     border-color: #f4f4f4;
+    color: #f4f4f4;
 }
 
 .ranking{
@@ -173,8 +149,6 @@ button:hover{
     font-weight:bold;
 }
 
-
-
 .primeiro{
     border-left-color:#FFD700;
     border-right-color: #f4f4f4;
@@ -184,6 +158,7 @@ button:hover{
     border-left-color:#C0C0C0;
     border-right-color: #f4f4f4;
 }
+
 
 .time{
     transition: .3s;
@@ -196,18 +171,9 @@ button:hover{
 
 }
 
-.placar{
-    transition: .3s;
-}
-
-.placar.ativo{
-    border: 4px solid gold;
-    transform: scale(1.05);
-}
-
 #tabuleiro{
     width:390px;
-    margin:30px auto;
+    margin:40px auto;
     display:grid;
     grid-template-columns:repeat(3,120px);
     gap:10px;
@@ -218,12 +184,25 @@ button:hover{
     height:120px;
     background:white;
     border:3px solid #333;
-
     display:flex;
     justify-content:center;
     align-items:center;
-
     cursor:pointer;
+    position: relative;
+}
+
+
+.casa::before { 
+    content: attr(data-posicao);
+    position: absolute;
+    font-size: 25px;
+    color: #888;
+    font-weight: bold;
+}
+
+
+.casa.ocupada::before {
+    display: none;
 }
 
 .casa img{
@@ -243,12 +222,12 @@ button{
 
 #reiniciar{
     margin: auto;
+    margin-top: 30px;
 }
 
 #resultado{
-    margin: auto;
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
+

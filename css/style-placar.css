@@ -79,11 +79,14 @@ h2:hover{
 
 .primeiro{
     border-left-color:#FFD700;
+    border-right-color: #f4f4f4;
 }
 
 .segundo{
     border-left-color:#C0C0C0;
+    border-right-color: #f4f4f4;
 }
+
 
 button{
     width: 300px;

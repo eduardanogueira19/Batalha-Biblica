@@ -1,11 +1,13 @@
 const casas = document.querySelectorAll(".casa");
 const resultado = document.getElementById("resultado");
-const vez = document.getElementById("vez");
 const reiniciar = document.getElementById("reiniciar");
 
-let jogador = "A";
-let jogoAtivo = true;
+let equipeAtual = estado.equipeAtual;
+const timeA = document.getElementById("timeA");
+const timeB = document.getElementById("timeB");
 
+let jogoAtivo = true;
+let pontos = 5;
 let tabuleiro = [
     "", "", "",
     "", "", "",
@@ -34,6 +36,29 @@ casas.forEach(casa=>{
 reiniciar.addEventListener("click", resetar);
 
 
+function destacarEquipe() {
+
+    timeA.classList.remove("ativa");
+    timeB.classList.remove("ativa");
+
+    if (equipeAtual === "equipeA") {
+        timeA.classList.add("ativa");
+    } else {
+        timeB.classList.add("ativa");
+    }
+
+}
+
+
+function trocarEquipe() {
+
+    estado.equipeAtual = equipeAtual;
+    salvarEstado();
+
+    destacarEquipe();
+
+}
+
 
 function jogar(){
 
@@ -43,11 +68,11 @@ function jogar(){
 
     if(tabuleiro[indice] != "") return;
 
-    tabuleiro[indice] = jogador;
+    tabuleiro[indice] = equipeAtual;
 
     const img = document.createElement("img");
 
-    if(jogador == "A"){
+    if(equipeAtual == "equipeA"){
         img.src = imagemA;
     }else{
         img.src = imagemB;
@@ -59,11 +84,9 @@ function jogar(){
 
     if(!jogoAtivo) return;
 
-    jogador = jogador == "A" ? "B" : "A";
+    equipeAtual = equipeAtual == "equipeA" ? "equipeB" : "equipeA";
+    trocarEquipe()
 
-    vez.textContent = jogador == "A"
-        ? "Vez: Reino do Sul"
-        : "Vez: Reino do Norte";
 }
 
 function verificar(){
@@ -81,9 +104,10 @@ function verificar(){
             jogoAtivo = false;
 
             resultado.textContent =
-                tabuleiro[a] == "A"
+                tabuleiro[a] == "equipeA"
                 ? "Reino do Sul venceu!"
                 : "Reino do Norte venceu!";
+                adicionarPonto(estado.equipeAtual, pontos);
 
             return;
         }
@@ -114,3 +138,4 @@ function resetar(){
     });
 }
 
+destacarEquipe();

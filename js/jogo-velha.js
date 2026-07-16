@@ -52,7 +52,8 @@ function destacarEquipe() {
 
 function trocarEquipe() {
 
-    estado.equipeAtual = equipeAtual;
+    
+
     salvarEstado();
 
     destacarEquipe();
@@ -127,15 +128,24 @@ function resetar(){
         "", "", ""
     ];
 
-    jogador = "A";
+    // Alterna quem começa a próxima rodada
+    estado.equipeAtual =
+        estado.equipeAtual === "equipeA"
+            ? "equipeB"
+            : "equipeA";
+
+    salvarEstado();
+
+    equipeAtual = estado.equipeAtual;
+
     jogoAtivo = true;
-
     resultado.textContent = "";
-    vez.textContent = "Vez: Reino do Sul";
 
-    casas.forEach(casa=>{
+    casas.forEach(casa => {
         casa.innerHTML = "";
     });
+
+    destacarEquipe();
 }
 
 destacarEquipe();

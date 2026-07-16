@@ -1,0 +1,254 @@
+*{
+    margin: 0;
+}
+body {
+    font-family: Arial, sans-serif;
+    background: #0D1F16;
+    height: 100vh;
+    width: 100vw;
+}
+
+header{
+    margin-left: 30px;
+    height: 50px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+h2{
+    color: #f4f4f4;
+    font-size: 20pt;
+    font-weight: 900;
+}
+
+a{
+    text-decoration: none;
+}
+
+header h2:hover{
+    color: #7bdf99;
+}
+
+
+.container {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.relogio{
+    display: flex;
+    align-items: center; /* Alinha verticalmente */
+    justify-content: center; /* Centraliza os dois elementos */
+    gap: 5px; /* Espaço entre a imagem e o tempo */
+    margin-top: 15px;
+}
+
+.relogio img {
+    width: 50px; /* Ajuste conforme desejar */
+    height: 60px;
+}
+
+.timer {
+    font-size: 40px;
+    font-weight: bold;
+    color: #f4f4f4;
+}
+
+.principal{
+    
+    width: 100vw;
+    height: auto;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+
+}
+
+.reinoSul{
+    margin-left: 50px;
+    width: 200px;
+    height: 400px;
+    justify-content: center;
+    align-items: center;
+}
+
+.reinoSul img{
+    width: 200px;
+    height: 200px;
+}
+
+.reinoSul h2{
+    align-items: center;
+    text-align: center;
+    font-size: 16pt;
+
+}
+
+.reinoSul p{
+    align-items: center;
+    text-align: center;
+    font-size: 12pt;
+    color: #f4f4f4;
+    
+}
+
+.reinoNorte{
+    margin-right: 50px;
+    width: 200px;
+    height: 400px;
+    display: flexbox;
+    justify-content: center;
+    align-items: center;
+}
+
+.reinoNorte img{
+    width: 200px;
+    height: 200px;
+}
+
+.reinoNorte h2{
+    align-items: center;
+    text-align: center;
+    font-size: 16pt;
+
+}
+
+.reinoNorte p{
+    align-items: center;
+    text-align: center;
+    font-size: 12pt;
+    color: #f4f4f4;
+    
+}
+
+#vez{
+    margin-top: 15px;
+    text-align: center;
+
+}
+
+.botoes {
+    margin-top: 20px;
+    display: flex;
+    gap: 2px;
+    justify-content: center;
+    align-items: center;
+}
+
+button{
+    width: 300px;
+    height: 50px;
+    border-radius: 10px;
+    color: #0D1F16;
+    border-color: #14381F;
+    font-weight: bold;
+    font-size: 20pt;
+}
+
+button:hover{
+    background-color: #14381F;
+    border-color: #f4f4f4;
+}
+
+.ranking{
+    display:flex;
+    flex-direction:row;
+    gap:15px;
+    justify-content: space-between;
+}
+
+.time{
+    display:flow-root;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px 20px;
+    border-radius:12px;
+    background:#fff;
+    border-left:8px solid #14381F;
+    border-right:8px solid #14381F;
+    font-size:14pt;
+    font-weight:bold;
+}
+
+
+
+.primeiro{
+    border-left-color:#FFD700;
+    border-right-color: #f4f4f4;
+}
+
+.segundo{
+    border-left-color:#C0C0C0;
+    border-right-color: #f4f4f4;
+}
+
+.time{
+    transition: .3s;
+}
+
+.time.ativa{
+    border:4px solid gold;
+    transform:scale(1.05);
+    box-shadow:0 0 20px gold;
+
+}
+
+.placar{
+    transition: .3s;
+}
+
+.placar.ativo{
+    border: 4px solid gold;
+    transform: scale(1.05);
+}
+
+#tabuleiro{
+    width:390px;
+    margin:30px auto;
+    display:grid;
+    grid-template-columns:repeat(3,120px);
+    gap:10px;
+}
+
+.casa{
+    width:120px;
+    height:120px;
+    background:white;
+    border:3px solid #333;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    cursor:pointer;
+}
+
+.casa img{
+    width:80px;
+    height:80px;
+}
+
+button{
+    margin-top:20px;
+    padding:10px 25px;
+    font-size:18px;
+    cursor:pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#reiniciar{
+    margin: auto;
+}
+
+#resultado{
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}

@@ -24,10 +24,11 @@ const palavras = [
 
 const somAcerto = new Audio("../sons/acerto.mp3");
 const somTimer = new Audio("../sons/timer.mp3");
+const somInicio = new Audio("../sons/inicio.mp3");
+const somPassar = new Audio("../sons/passar.mp3")
 
 const somErro = new Audio("sons/erro.mp3");
-const somInicio = new Audio("sons/inicio.mp3");
-const somFim = new Audio("sons/fim.mp3");
+const somFim = new Audio("../sons/fim.mp3");
 const somTroca = new Audio("sons/troca.mp3");
 const somVitoria = new Audio("sons/vitoria.mp3");
 
@@ -79,6 +80,8 @@ class Jogo {
         });
 
         this.btnProxima.addEventListener("click", () => {
+            somPassar.currentTime = 0;
+            somPassar.play();
             this.proximaPalavra();
         });
 
@@ -117,6 +120,7 @@ class Jogo {
     }
 
     iniciarRodada(){
+
        if (this.limparNaProximaRodada) {
 
             this.listaSul.innerHTML = "";
@@ -232,6 +236,7 @@ class Jogo {
     iniciarTimer(){
 
         somTimer.currentTime = 0;
+        somTimer.loop = true;
         somTimer.play();
 
         clearInterval(this.intervalo);
@@ -250,11 +255,12 @@ class Jogo {
 
             clearInterval(this.intervalo);
 
-            // Se a palavra atual ainda não foi registrada,
-            // coloca ela junto das pendentes
+            
             if(this.palavraAtual !== ""){
                 this.pendentes.push(this.palavraAtual);
             }
+
+            
 
             this.finalizarRodada();
 
@@ -265,6 +271,8 @@ class Jogo {
     }
 
     proximaPalavra(){
+
+       
 
         this.pendentes.push(this.palavraAtual);
 
@@ -288,6 +296,14 @@ class Jogo {
 
    
     finalizarRodada(){
+
+        somTimer.pause();
+        somTimer.currentTime = 0;
+        somTimer.loop = false;
+
+        somFim.currentTime = 0;
+        somFim.play();
+
 
        this.equipesDaRodada++;
 

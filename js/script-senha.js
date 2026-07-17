@@ -22,6 +22,16 @@ const palavras = [
 
 ];
 
+const somAcerto = new Audio("../sons/acerto.mp3");
+const somErro = new Audio("sons/erro.mp3");
+const somInicio = new Audio("sons/inicio.mp3");
+const somFim = new Audio("sons/fim.mp3");
+const somTroca = new Audio("sons/troca.mp3");
+const somVitoria = new Audio("sons/vitoria.mp3");
+
+
+
+
 class Jogo {
 
     constructor(){
@@ -77,6 +87,8 @@ class Jogo {
 
 
     }
+
+    
 
     destacarEquipe() {
 
@@ -256,6 +268,8 @@ class Jogo {
     }
 
     acertou(){
+        somAcerto.currentTime = 0;
+        somAcerto.play();
 
         this.registrarPalavra(true, this.palavraAtual);
 
@@ -312,7 +326,11 @@ class Jogo {
         
 
     }
+
+    
 }
+
+
 
 const jogo = new Jogo();
 

@@ -23,6 +23,8 @@ const palavras = [
 ];
 
 const somAcerto = new Audio("../sons/acerto.mp3");
+const somTimer = new Audio("../sons/timer.mp3");
+
 const somErro = new Audio("sons/erro.mp3");
 const somInicio = new Audio("sons/inicio.mp3");
 const somFim = new Audio("sons/fim.mp3");
@@ -228,6 +230,9 @@ class Jogo {
     }
 
     iniciarTimer(){
+
+        somTimer.currentTime = 0;
+        somTimer.play();
 
         clearInterval(this.intervalo);
 

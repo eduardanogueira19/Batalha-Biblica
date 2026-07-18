@@ -26,14 +26,7 @@ const somAcerto = new Audio("../sons/acerto.mp3");
 const somTimer = new Audio("../sons/timer.mp3");
 const somInicio = new Audio("../sons/inicio.mp3");
 const somPassar = new Audio("../sons/passar.mp3")
-
-const somErro = new Audio("sons/erro.mp3");
 const somFim = new Audio("../sons/fim.mp3");
-const somTroca = new Audio("sons/troca.mp3");
-const somVitoria = new Audio("sons/vitoria.mp3");
-
-
-
 
 class Jogo {
 
@@ -50,7 +43,6 @@ class Jogo {
         this.limitePalavras = 5;
         this.palavrasMostradas = 0;
         this.indicePalavra = 0;
-        
 
         this.pendentes = [];
 
@@ -92,8 +84,6 @@ class Jogo {
 
 
     }
-
-    
 
     destacarEquipe() {
 
@@ -156,7 +146,6 @@ class Jogo {
     }
 
     trocarEquipe() {
-        
 
         this.equipeAtual =
             this.equipeAtual === "equipeA"
@@ -181,7 +170,6 @@ class Jogo {
             return;
         }
 
-        // Ainda existem palavras novas
         if(this.palavrasMostradas < this.limitePalavras){
 
             const indice = Math.floor(
@@ -197,7 +185,7 @@ class Jogo {
             this.contadorPalavras.textContent = this.palavrasMostradas;
 
         }
-        // Agora só mostram as pendentes
+        
         else{
 
             this.palavraAtual =
@@ -210,8 +198,6 @@ class Jogo {
         this.palavra.textContent = this.palavraAtual;
 
     }
-
-
 
     registrarPalavra(acertou, palavra){
 
@@ -254,13 +240,10 @@ class Jogo {
             if(this.tempo < 0){
 
             clearInterval(this.intervalo);
-
             
             if(this.palavraAtual !== ""){
                 this.pendentes.push(this.palavraAtual);
             }
-
-            
 
             this.finalizarRodada();
 
@@ -271,9 +254,6 @@ class Jogo {
     }
 
     proximaPalavra(){
-
-       
-
         this.pendentes.push(this.palavraAtual);
 
         this.mostrarPalavra();
@@ -294,7 +274,6 @@ class Jogo {
 
     }
 
-   
     finalizarRodada(){
 
         somTimer.pause();
@@ -304,8 +283,7 @@ class Jogo {
         somFim.currentTime = 0;
         somFim.play();
 
-
-       this.equipesDaRodada++;
+        this.equipesDaRodada++;
 
         if (this.equipesDaRodada === 2) {
 
@@ -334,24 +312,14 @@ class Jogo {
             this.carregarPalavrasDaRodada();
         }
 
-  
-
         this.trocarEquipe();
 
         this.btnIniciar.disabled = false;
         this.contadorPalavras.textContent = "0";
 
-        
-
-        
-        
-
     }
 
-    
 }
-
-
 
 const jogo = new Jogo();
 

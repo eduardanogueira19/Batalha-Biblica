@@ -22,7 +22,7 @@ h1{
     margin-bottom: 25px;
 }
 
-h2{
+.voltar{
     color: #f4f4f4;
     font-size: 20pt;
     font-weight: 900;
@@ -31,8 +31,7 @@ h2{
 a{
     text-decoration: none;
 }
-
-h2:hover{
+.voltar:hover{
     color: #7bdf99;
 }
 

@@ -1,9 +1,8 @@
-const musica = new Audio("../sons/ambienteInicial.mp3");
+const musica = new Audio("sons/ambienteInicial.mp3");
 musica.loop = true;
 musica.volume = 0.2;
 
-const somClique = new Audio("../sons/click.mp3");
-somClique.currentTime = 10;
+const somClique = new Audio("sons/click.mp3");
 somClique.volume = 0.6;
 
 const btnMusica = document.getElementById("btnMusica");

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dicas</title>
+    <title>Jogo das Palavras</title>
     <link rel="stylesheet" href="../css/style-jogo-palavras.css">
 </head>
 <body>
@@ -60,6 +60,34 @@
                 Chutar resposta
             </button>
 
+        </div>
+    </div>
+
+    <div id="modalResposta" class="modal oculto">
+
+        <div class="modal-conteudo">
+
+            <h2>Chutar resposta</h2>
+
+            <div id="camposResposta"></div>
+
+            <div class="botoes-modal">
+                <button id="btnConfirmarResposta">Confirmar</button>
+                <button id="btnCancelarResposta">Cancelar</button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="modalVitoria" class="modal-vitoria">
+        <div class="modal-conteudo-vitoria">
+            <h2>🎉 Parabéns!</h2>
+            <p>Vocês acertaram a palavra!</p>
+
+            <button id="btnProximaPalavra">
+                Próxima Palavra
+            </button>
         </div>
     </div>
     

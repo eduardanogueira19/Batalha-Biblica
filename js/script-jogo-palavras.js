@@ -90,7 +90,7 @@ let indiceRodada = 0;
 
 let equipeAtual = estado.equipeAtual;
 
-
+let novasLetras = [];
 
 const painel = document.getElementById("painelPalavra");
 
@@ -102,8 +102,27 @@ const btnChutar = document.getElementById("btnChutar");
 
 const painelErradas = document.getElementById("letrasErradas");
 
-btnChutar.addEventListener("click", chutarLetra);
+const somAcerto = new Audio("../sons/letraAcerto.mp3");
+const somErro = new Audio("../sons/letraErro.mp3");
+const somVitoria = new Audio("../sons/vitoria.mp3");
 
+const modalResposta = document.getElementById("modalResposta");
+const camposResposta = document.getElementById("camposResposta");
+
+const btnResposta = document.getElementById("btnResposta");
+const btnConfirmarResposta = document.getElementById("btnConfirmarResposta");
+const btnCancelarResposta = document.getElementById("btnCancelarResposta");
+
+btnChutar.addEventListener("click", chutarLetra);
+btnResposta.addEventListener("click", abrirModalResposta);
+
+btnCancelarResposta.addEventListener("click", ()=>{
+
+    modalResposta.classList.add("oculto");
+
+});
+
+btnConfirmarResposta.addEventListener("click", confirmarResposta);
 
 input.addEventListener("keypress", function(e){
 
@@ -113,6 +132,17 @@ input.addEventListener("keypress", function(e){
 
     }
 
+});
+
+const modalVitoria = document.getElementById("modalVitoria");
+const btnProximaPalavra = document.getElementById("btnProximaPalavra");
+
+
+btnProximaPalavra.addEventListener("click", () => {
+
+    modalVitoria.style.display = "none";
+
+    proximaRodada();
 });
 
 
@@ -190,6 +220,8 @@ function desenharPainel() {
 
             caixa.textContent = letrasDescobertas[i][j];
 
+            
+
             linha.appendChild(caixa);
 
         }
@@ -197,6 +229,24 @@ function desenharPainel() {
         painel.appendChild(linha);
 
     }
+
+}
+
+function abrirModalResposta(){
+
+    camposResposta.innerHTML = "";
+
+    palavrasAtual.forEach((palavra, indice)=>{
+
+        const input = document.createElement("input");
+
+        input.placeholder = `Palavra ${indice+1}`;
+
+        camposResposta.appendChild(input);
+
+    });
+
+    modalResposta.classList.remove("oculto");
 
 }
 
@@ -241,6 +291,8 @@ function revelarLetra(letra){
 
     let quantidade = 0;
 
+    novasLetras = []; // limpa as letras reveladas nesta jogada
+
     letra = removerAcentos(letra.toUpperCase());
 
     for(let i=0;i<palavrasAtual.length;i++){
@@ -253,8 +305,12 @@ function revelarLetra(letra){
                letrasDescobertas[i][j] === ""){
 
                 letrasDescobertas[i][j] = palavrasAtual[i][j];
-
                 quantidade++;
+
+                novasLetras.push({
+                    linha: i,
+                    coluna: j
+                });
 
             }
 
@@ -263,6 +319,8 @@ function revelarLetra(letra){
     }
 
     if (quantidade > 0) {
+        somAcerto.currentTime = 0; // Reinicia o áudio
+        somAcerto.play();
 
         adicionarPonto(equipeAtual, quantidade);
 
@@ -270,39 +328,59 @@ function revelarLetra(letra){
 
     }else{
 
+        somErro.currentTime = 0;
+        somErro.play();
+
         if(!letrasErradas.includes(letra))
             letrasErradas.push(letra);
 
     }
 
     desenharPainel();
+
+    novasLetras.forEach(pos => {
+
+        const linha = painel.children[pos.linha];
+        const caixa = linha.children[pos.coluna];
+
+        caixa.classList.add("revelada");
+
+    });
+
     desenharErradas();
 
-    verificarVitoria();
+    console.log("Chamando verificar vitória");
 
-    trocarEquipe();
+    const venceu = verificarVitoria();
+
+    console.log("Voltou da verificar vitória");
+
+    if (!venceu) {
+        trocarEquipe();
+    }
 
 }
 
 function verificarVitoria() {
 
     for (let i = 0; i < palavrasAtual.length; i++) {
-
         for (let j = 0; j < palavrasAtual[i].length; j++) {
 
             if (letrasDescobertas[i][j] === "") {
-
-                return;
-
+                return false;
             }
-
         }
-
     }
 
-    alert("Parabéns! Você completou a rodada!");
+    desenharPainel();
 
-    proximaRodada();
+    somVitoria.currentTime = 0;
+    somVitoria.play();
+
+    abrirModalVitoria();
+    trocarEquipe();
+
+    return true;
 }
 
 function proximaRodada() {
@@ -317,6 +395,74 @@ function proximaRodada() {
     iniciarRodada();
 
 }
+
+function confirmarResposta() {
+
+    const inputs = camposResposta.querySelectorAll("input");
+
+    // Respostas digitadas
+    const respostas = [...inputs]
+        .map(input => removerAcentos(input.value.trim().toUpperCase()))
+        .sort();
+
+    // Palavras corretas
+    const corretas = palavrasAtual
+        .map(p => removerAcentos(p.toUpperCase()))
+        .sort();
+
+    const acertou = JSON.stringify(respostas) === JSON.stringify(corretas);
+
+    if (acertou) {
+
+        let pontos = 0;
+
+        // Revela todas as letras que ainda estavam escondidas
+        for (let i = 0; i < palavrasAtual.length; i++) {
+
+            for (let j = 0; j < palavrasAtual[i].length; j++) {
+
+                if (letrasDescobertas[i][j] === "") {
+
+                    letrasDescobertas[i][j] = palavrasAtual[i][j];
+                    pontos++;
+
+                }
+
+            }
+
+        }
+
+        adicionarPonto(equipeAtual, pontos);
+        atualizarPlacar();
+
+        desenharPainel();
+
+        modalResposta.classList.add("oculto");
+
+        // Usa a mesma lógica de vitória das letras
+        verificarVitoria();
+
+    } else {
+
+        modalResposta.classList.add("oculto");
+
+        alert("Resposta incorreta!");
+
+        trocarEquipe();
+
+    }
+
+}
+
+function abrirModalVitoria(){
+
+    console.log("Abrindo modal");
+
+    modalVitoria.style.display = "flex";
+}
+
+
+
 destacarEquipe();  
 atualizarPlacar();
 iniciarRodada();

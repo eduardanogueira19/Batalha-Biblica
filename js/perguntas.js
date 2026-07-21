@@ -87,6 +87,10 @@ const passarPergunta = document.getElementById("passarPergunta");
 
 const alternativas = document.querySelectorAll(".alternativas button");
 
+const somAcerto = new Audio("../sons/acerto.mp3");
+const somErro = new Audio("../sons/letraErro.mp3");
+const somPassar = new Audio("../sons/passar.mp3")
+
 alternativas.forEach((botao, indice) => {
     botao.classList.remove("selecionada");
     botao.addEventListener("click", () => {
@@ -188,6 +192,7 @@ conferirResposta.onclick = ()=>{
         if(i == perguntaAtual.resposta){
 
             botao.classList.add("correta");
+            
 
         }
 
@@ -198,8 +203,13 @@ conferirResposta.onclick = ()=>{
         document
             .getElementById(letras[respostaSelecionada])
             .classList.add("errada");
+            somErro.currentTime = 0;
+            somErro.play();
 
     }else{
+
+        somAcerto.currentTime = 0;
+        somAcerto.play();
 
         adicionarPonto(estado.equipeAtual, pontos);
         atualizarPlacar();
@@ -231,7 +241,8 @@ proximaPergunta.onclick = ()=>{
 };
 
 passarPergunta.onclick = ()=>{
-
+    somPassar.currentTime = 0;
+    somPassar.play();
     trocarEquipe();
     
     pontos--;

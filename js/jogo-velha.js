@@ -7,6 +7,8 @@ const timeA = document.getElementById("timeA");
 const timeB = document.getElementById("timeB");
 
 
+const somClick = new Audio("../sons/drop.mp3");
+const somVitoria = new Audio("../sons/vitoria.mp3");
 
 let jogoAtivo = true;
 let pontos = 5;
@@ -91,10 +93,13 @@ function jogar(){
     const img = document.createElement("img");
 
     if(equipeAtual == "equipeA"){
+        somClick.currentTime = 0;
+        somClick.play();
         
         img.src = imagemA;
     }else{
-       
+        somClick.currentTime = 0;
+        somClick.play();
         img.src = imagemB;
     }
 
@@ -122,14 +127,19 @@ function verificar(){
             tabuleiro[a] == tabuleiro[b] &&
             tabuleiro[a] == tabuleiro[c]
         ){
+            somVitoria.currentTime = 0;
+            somVitoria.play();
 
             jogoAtivo = false;
+            
 
             resultado.textContent =
                 tabuleiro[a] == "equipeA"
                 ? "Reino do Sul venceu!"
                 : "Reino do Norte venceu!";
                 adicionarPonto(estado.equipeAtual, pontos);
+            
+                
 
             return;
         }

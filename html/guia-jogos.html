@@ -7,12 +7,30 @@
     <link rel="stylesheet" href="../css/style-guia.css">
 </head>
 <body class="fundo">
+    
+
     <header>
         <a href="../index.html"><h2>Voltar</h2></a>
-        <h1>Escolha um Jogo:</h1>
-        <a href="../html/placar.html"><h2>Placar</h2></a>
     </header>
 
+
+    <div class="container">
+        <div class="ranking">
+            <div class="time primeiro" id="timeA">
+                <span>Reino do Sul</span>
+                <span id="placarA">0 pts</span>
+            </div>
+
+            <div class="time segundo" id="timeB">
+                <span>Reino do Norte</span>
+                <span id="placarB">0 pts</span>
+            </div>
+
+        </div>
+    </div>
+
+
+    <h1>Escolha um Jogo:</h1>
     <main>
         <!--Jogo Qual é a senha?-->
         <section class="img-botao" id="senha">
@@ -77,12 +95,9 @@
             </a>
         </section>
 
-        
-
-        
-        
-
     </main>
-    <script src="../js/fundo.js"></script>
+    <script src="../js/placar.js"></script>
+    <script src="../js/estadoJogo.js"></script>
+    <script src="../js/guia.js"></script>
 </body>
 </html>

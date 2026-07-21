@@ -35,6 +35,9 @@ const perguntas = [
 
 ];
 
+const somAcerto = new Audio("../sons/acerto.mp3");
+const somErro = new Audio("../sons/letraErro.mp3");
+
 const selectTime = document.getElementById("timeSelecionado");
 
 let perguntasDisponiveis = [...perguntas];
@@ -163,12 +166,16 @@ conferirResposta.onclick = ()=>{
 
     if(respostaSelecionada != perguntaAtual.correta){
 
+        somErro.currentTime = 0;
+        somErro.play();
+
         document
             .getElementById(letras[respostaSelecionada])
             .classList.add("errada");
 
     }else{
-
+        somAcerto.currentTime = 0;
+        somAcerto.play();
         adicionarPonto(selectTime.value, pontos);
         atualizarPlacar();
 

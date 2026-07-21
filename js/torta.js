@@ -35,135 +35,169 @@ const perguntas = [
 
 ];
 
-const pergunta = document.getElementById("palavra");
-
-const botoes = [
-    document.getElementById("A"),
-    document.getElementById("B"),
-    document.getElementById("C"),
-    document.getElementById("D")
-];
-
-const btnConfirmar = document.getElementById("conferirResposta");
-const btnProxima = document.getElementById("proximaPergunta");
-const btnPassar = document.getElementById("passarPergunta");
-
 const selectTime = document.getElementById("timeSelecionado");
-
-const timeA = document.getElementById("timeA");
-const timeB = document.getElementById("timeB");
 
 let perguntasDisponiveis = [...perguntas];
 
+
 let perguntaAtual;
+let indicePerguntaAtual;
 
 let respostaSelecionada = null;
 
-function destacarEquipe(){
+let pontos = 3;
 
-    if(selectTime.value === "equipeA"){
+const letras = ["A","B","C","D"];
+const timeA = document.getElementById("timeA");
+const timeB = document.getElementById("timeB");
 
-        timeA.classList.add("ativo");
-        timeB.classList.remove("ativo");
+const conferirResposta = document.getElementById("conferirResposta");
+const proximaPergunta = document.getElementById("proximaPergunta");
 
-    }else{
 
-        timeB.classList.add("ativo");
-        timeA.classList.remove("ativo");
+const alternativas = document.querySelectorAll(".alternativas button");
 
+selectTime.addEventListener("change", destacarEquipe); 
+
+alternativas.forEach((botao, indice) => {
+
+    botao.onclick = () => {
+
+        alternativas.forEach(b =>
+            b.classList.remove("selecionada")
+        );
+
+        botao.classList.add("selecionada");
+
+        respostaSelecionada = indice;
+
+        conferirResposta.disabled = false;
+
+    };
+
+});
+
+function destacarEquipe() {
+
+    if (selectTime.value === "equipeA") {
+        timeA.classList.add("ativa");
+        timeB.classList.remove("ativa");
+    } else {
+        timeB.classList.add("ativa");
+        timeA.classList.remove("ativa");
     }
 
 }
 
-selectTime.addEventListener("change", destacarEquipe);
+function carregarPergunta() {
 
-destacarEquipe();
+    if (perguntasDisponiveis.length === 0) {
 
-function mostrarPergunta(){
+        document.getElementById("palavra").textContent = "Fim do jogo!";
 
-    if(perguntasDisponiveis.length === 0){
+        alternativas.forEach(botao => {
+            botao.disabled = true;
+        });
 
-        pergunta.textContent = "Fim do jogo!";
+        conferirResposta.disabled = true;
+        proximaPergunta.disabled = true;
 
-        botoes.forEach(botao=>botao.disabled = true);
+        return;
+    }
 
-        btnConfirmar.disabled = true;
-        btnProxima.disabled = true;
-        btnPassar.disabled = true;
+    indicePerguntaAtual = Math.floor(
+        Math.random() * perguntasDisponiveis.length
+    );
+
+    // Guarda a pergunta sorteada
+    perguntaAtual = perguntasDisponiveis[indicePerguntaAtual];
+
+    // Mostra a pergunta
+    document.getElementById("palavra").textContent =
+        perguntaAtual.pergunta;
+
+    // Atualiza as alternativas
+    letras.forEach((letra, i) => {
+
+        const botao = document.getElementById(letra);
+
+        botao.textContent = `${letra} - ${perguntaAtual.alternativas[i]}`;
+
+        botao.classList.remove(
+            "selecionada",
+            "correta",
+            "errada"
+        );
+
+        botao.disabled = false;
+
+    });
+
+    respostaSelecionada = null;
+
+    conferirResposta.disabled = true;
+    proximaPergunta.disabled = true;
+
+}
+
+
+
+conferirResposta.onclick = ()=>{
+
+    if(respostaSelecionada == null)
+        return;
+
+    letras.forEach((letra,i)=>{
+
+        const botao = document.getElementById(letra);
+
+        botao.disabled = true;
+
+        if(i == perguntaAtual.correta){
+
+            botao.classList.add("correta");
+
+        }
+
+    });
+
+    if(respostaSelecionada != perguntaAtual.correta){
+
+        document
+            .getElementById(letras[respostaSelecionada])
+            .classList.add("errada");
+
+    }else{
+
+        adicionarPonto(selectTime.value, pontos);
+        atualizarPlacar();
+
+    }
+
+    // Descarta a pergunta
+    perguntasDisponiveis.splice(indicePerguntaAtual,1);
+
+    conferirResposta.disabled = true;
+    proximaPergunta.disabled = false;
+
+};
+
+proximaPergunta.onclick = ()=>{
+    pontos = 3;
+
+    if(perguntasDisponiveis.length == 0){
+
+        alert("Fim do jogo!");
 
         return;
 
     }
 
-    const indice = Math.floor(Math.random()*perguntasDisponiveis.length);
+    carregarPergunta();
 
-    perguntaAtual = perguntasDisponiveis.splice(indice,1)[0];
-
-    pergunta.textContent = perguntaAtual.pergunta;
-
-    respostaSelecionada = null;
-
-    botoes.forEach((botao,i)=>{
-
-        botao.textContent =
-            String.fromCharCode(65+i)+" - "+perguntaAtual.alternativas[i];
-
-        botao.disabled = false;
-
-        botao.style.background = "";
-
-    });
-
-    btnConfirmar.disabled = true;
-    btnProxima.disabled = false;
-
-}
-
-botoes.forEach((botao,indice)=>{
-
-    botao.addEventListener("click",()=>{
-
-        respostaSelecionada = indice;
-
-        botoes.forEach(b=>b.style.background="");
-
-        botao.style.background = "dodgerblue";
-
-        btnConfirmar.disabled = false;
-
-    });
-
-});
-
-btnConfirmar.addEventListener("click",()=>{
-
-    botoes.forEach(b=>b.disabled=true);
-
-    if(respostaSelecionada === perguntaAtual.correta){
-
-        botoes[respostaSelecionada].style.background = "#2ecc71";
-
-        adicionarPonto(selectTime.value,5);
-
-    }else{
-
-        botoes[respostaSelecionada].style.background = "#e74c3c";
-
-        botoes[perguntaAtual.correta].style.background = "#2ecc71";
-    
-
-    }
-
-    btnConfirmar.disabled = true;
-    btnProxima.disabled = false;
-
-});
-
-btnProxima.addEventListener("click",()=>{
-
-    mostrarPergunta();
-
-});
+};
 
 
-mostrarPergunta();
+destacarEquipe();  
+atualizarPlacar();
+carregarPergunta();

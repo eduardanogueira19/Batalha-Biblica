@@ -1,4 +1,5 @@
 const musica = new Audio("sons/ambienteInicial.mp3");
+musica.preload = "auto";
 musica.loop = true;
 musica.volume = 0.2;
 

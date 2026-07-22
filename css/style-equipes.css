@@ -5,11 +5,26 @@
     font-family:Arial, Helvetica, sans-serif;
 }
 
-body{
+html, body {
+    height: 100%;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+    background-color: #0D1F16;
+    overflow: hidden;
+    flex-direction: column;
     
-    background:#0D1F16;
-    justify-content:center;
-    align-items:center;
+}
+
+body{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+main{
+    flex: 1;
 }
 
 header{
@@ -139,4 +154,22 @@ h2:hover{
 
 #salvar:hover{
     background:#0D1F16;
+}
+
+footer{
+    color: #f4f4f4;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #14381F;
+    width: 100%;
+}
+
+footer p{
+    margin-left: 5%;
+    margin-right: 5%;
+    font-size: 20px;
 }

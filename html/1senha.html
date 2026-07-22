@@ -7,61 +7,66 @@
     <link rel="stylesheet" href="../css/style-senha.css">
 </head>
 <body>
-   <header>
-        <a href="../index.html"><h2>Voltar</h2></a>
-    </header>
-
-    <div class="container">
-        <div class="ranking">
-            <div class="time primeiro" id="timeA">
-                <span>Reino do Sul</span>
-                <span id="placarA">0 pts</span>
-            </div>
-
-            <div class="time segundo" id="timeB">
-                <span>Reino do Norte</span>
-                <span id="placarB">0 pts</span>
-            </div>
-
-        </div>
+    <main>
         
+        <div class="container">
+            <a class="voltar" href="../index.html"><h2>Voltar</h2></a>
+            <div class="ranking">
+                <div class="time primeiro" id="timeA">
+                    <span>Reino do Sul</span>
+                    <span id="placarA">0 pts</span>
+                </div>
 
-        <div class="relogio">
-            <img src="../imagem/time.png" alt="Imagem Timer">
-            <div class="timer">01:00</div>
-        </div>
-
-        <div class="contador-palavras">
-            Palavra: <span id="contadorPalavras"> 1</span>/5
-        </div>
-
-        <div class="principal">
-            <div class="reinoSul">
-                <img src="../imagem/reino-sul.png" alt="" srcset="">
-                <h2>Palavras:</h2>
-                <ul id="listaSul"></ul>
+                <div class="time segundo" id="timeB">
+                    <span>Reino do Norte</span>
+                    <span id="placarB">0 pts</span>
+                </div>
 
             </div>
+            
 
-            <div class="palavra">
-                <div class="card-palavra" id="palavra" style="text-transform: uppercase;">
-                    ?
+            <div class="relogio">
+                <img src="../imagem/time.png" alt="Imagem Timer">
+                <div class="timer">01:00</div>
+            </div>
+
+            <div class="contador-palavras">
+                Palavra: <span id="contadorPalavras"> 1</span>/5
+            </div>
+
+            <div class="principal">
+                <div class="reinoSul">
+                    <img src="../imagem/reino-sul.png" alt="" srcset="">
+                    <h2>Palavras:</h2>
+                    <ul id="listaSul"></ul>
+
+                </div>
+
+                <div class="palavra">
+                    <div class="card-palavra" id="palavra" style="text-transform: uppercase;">
+                        ?
+                    </div>
+                </div>
+                <div class="reinoNorte">
+                    <img src="../imagem/reino-norte.png" alt="" srcset="">
+                    <h2>Palavras:</h2>
+                    <ul id="listaNorte"></ul>
+
                 </div>
             </div>
-            <div class="reinoNorte">
-                <img src="../imagem/reino-norte.png" alt="" srcset="">
-                <h2>Palavras:</h2>
-                <ul id="listaNorte"></ul>
-
+        
+            <div class="botoes">
+                <button id="iniciar">Iniciar</button>
+                <button id="proxima" disabled>Pular</button>
+                <button id="acertou" disabled>Acertei!</button>
             </div>
         </div>
-    
-        <div class="botoes">
-            <button id="iniciar">Iniciar</button>
-            <button id="proxima" disabled>Pular</button>
-            <button id="acertou" disabled>Acertei!</button>
-        </div>
-    </div>
+    </main>
+    <footer>
+        <p>Batalha Bíblica v1.0</p>
+        <p>Desenvolvido por Eduarda Nogueira • © 2026</p>
+        <p>@eduarda_eng.software</p>
+    </footer>
 
     <script src="../js/placar.js"></script>
     <script src="../js/estadoJogo.js"></script>

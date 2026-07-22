@@ -1,36 +1,47 @@
 *{
     margin: 0;
+    
 }
-
-body {
-    font-family: Arial, sans-serif;
-    background: #0D1F16;
-    height: 100vh;
-    width: 100vw;
-}
-
-header{
-    margin-left: 30px;
-    height: 50px;
-    display: flex;
-    justify-content: left;
+html, body {
+    height: 100%;
+    margin: 0;
+    justify-content: center;
     align-items: center;
+    background-color: #0D1F16;
+    overflow: hidden;
+    flex-direction: column;
 }
 
-h2{
+body{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 16px;
+}
+
+.voltar{
+    margin-top: 5px;
+    margin-left: 15px;
+    width: 100vw;
     color: #f4f4f4;
-    font-size: 20pt;
+    font-size: 1.5em;
     font-weight: 900;
+    text-align: left;
+}
+
+
+.voltar:hover{
+    color: #7bdf99;
+}
+
+main{
+    flex: 1;
 }
 
 a{
     text-decoration: none;
 }
-
-h2:hover{
-    color: #7bdf99;
-}
-
 
 .container {
     margin-top: 10px;
@@ -39,9 +50,7 @@ h2:hover{
     align-items: center;
 }
 
-
 .principal{
-    
     width: 100vw;
     height: auto;
     display: flex;
@@ -63,10 +72,6 @@ h2:hover{
     height: 200px;
 }
 
-
-
-
-
 .reinoNorte{
     margin-right: 50px;
     width: 200px;
@@ -87,44 +92,41 @@ h2:hover{
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 80px;
     font-weight: bold;
     color: #0D1F16;
     width: 50%;
 }
+
 #palavra{
     padding: 15px 15px;
-    font-size: 35pt;
+    font-size: 3em;
     text-align: center;
     align-items: center;
     justify-content: center;
+    font-weight: bold;
 }
 
 .card-perguntas {
+    margin-top: 10px;
     width: 700px;
-    height: 350px;
+    height: 330px;
     background: white;
     border-radius: 25px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 80px;
-    font-weight: bold;
 }
 
 .alternativas{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin-top: 30px;
-
+    margin-top: 10px;
 }
 
 .botoes {
     width: 600px;
-    margin-top: 20px;
     display: flex;
-    gap: 5px;
+    gap: 1px;
     justify-content: center;
     align-items: center;
 }
@@ -144,9 +146,9 @@ button{
     color: #0D1F16;
     border-color: #14381F;
     font-weight: bold;
-    font-size: 20pt;
+    font-size: 2em;
+    margin-bottom: 10px;
 }
-
 
 .ranking{
     display:flex;
@@ -164,7 +166,7 @@ button{
     background:#fff;
     border-left:8px solid #14381F;
     border-right:8px solid #14381F;
-    font-size:14pt;
+    font-size:1.5em;
     font-weight:bold;
 }
 
@@ -215,9 +217,8 @@ button{
     color:white;
 }
 
-
-
 #timeSelecionado{
+    background-color: #f4f4f4;
     margin-top: 15px;
     width: 200px;
     height: 50px;
@@ -229,11 +230,29 @@ button{
     font-weight: 700;
     border-radius: 10px;
     border-color:  #14381F;
-    font-size: 16pt;
+    font-size: 1.5em;
 }
 
 .ativa{
     border:4px solid gold;
     transform:scale(1.05);
     box-shadow:0 0 20px gold;
+}
+
+
+footer{
+    color: #f4f4f4;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #14381F;
+    width: 100%;
+    height: 30px;
+}
+
+footer p{
+    margin-left: 5%;
+    margin-right: 5%;
+    font-size: 1.5em;
 }

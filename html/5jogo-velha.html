@@ -8,44 +8,51 @@
 </head>
 <body>
    <header>
-        <a href="../index.html"><h2>Voltar</h2></a>
+        <a class="voltar" href="../index.html"><h2>Voltar</h2></a>
     </header>
-    <div class="container">
-        <div class="ranking">
-            <div class="time primeiro" id="timeA">
-                <span>Reino do Sul</span>
-                <span id="placarA">0 pts</span>
-            </div>
+    <main>
+        <div class="container">
+            <div class="ranking">
+                <div class="time primeiro" id="timeA">
+                    <span>Reino do Sul</span>
+                    <span id="placarA">0 pts</span>
+                </div>
 
-            <div class="time segundo" id="timeB">
-                <span>Reino do Norte</span>
-                <span id="placarB">0 pts</span>
-            </div>
+                <div class="time segundo" id="timeB">
+                    <span>Reino do Norte</span>
+                    <span id="placarB">0 pts</span>
+                </div>
 
+            </div>
         </div>
-    </div>
 
-    <div id="tabuleiro">
-    <div class="casa" data-index="0"></div>
-    <div class="casa" data-index="1"></div>
-    <div class="casa" data-index="2"></div>
+        <div id="tabuleiro">
+            <div class="casa" data-index="0"></div>
+            <div class="casa" data-index="1"></div>
+            <div class="casa" data-index="2"></div>
 
-    <div class="casa" data-index="3"></div>
-    <div class="casa" data-index="4"></div>
-    <div class="casa" data-index="5"></div>
+            <div class="casa" data-index="3"></div>
+            <div class="casa" data-index="4"></div>
+            <div class="casa" data-index="5"></div>
 
-    <div class="casa" data-index="6"></div>
-    <div class="casa" data-index="7"></div>
-    <div class="casa" data-index="8"></div>
-</div>
+            <div class="casa" data-index="6"></div>
+            <div class="casa" data-index="7"></div>
+            <div class="casa" data-index="8"></div>
+        </div>
 
-    <h2 id="resultado"></h2>
+        <h2 id="resultado"></h2>
 
-    <button id="reiniciar">Reiniciar</button>
+        <button id="reiniciar">Reiniciar</button>
+    </main>
+    <footer>
+        <p>Batalha Bíblica v1.0</p>
+        <p>Desenvolvido por Eduarda Nogueira • © 2026</p>
+        <p>@eduarda_eng.software</p>
+    </footer>
 
-<script src="../js/placar.js"></script>
-<script src="../js/estadoJogo.js"></script>
-<script src="../js/jogo-velha.js"></script>
+    <script src="../js/placar.js"></script>
+    <script src="../js/estadoJogo.js"></script>
+    <script src="../js/jogo-velha.js"></script>
 
 </body>
 </html>

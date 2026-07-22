@@ -8,119 +8,124 @@
 </head>
 <body>
 
-<header>
-    <a href="../index.html"><h2>Voltar</h2></a>
-</header>
+    <header>
+        <a class="voltar" href="../index.html"><h2>Voltar</h2></a>
+    </header>
+    <main>
+        <div class="container">
 
-<div class="container">
+            <div class="card">
 
-    <div class="card">
+                <h1>🏆 Placar</h1>
 
-        <h1>🏆 Placar</h1>
+                <div class="ranking">
 
-        <div class="ranking">
+                    <div class="time primeiro">
+                        <span>Reino do Sul</span>
+                        <span id="placarA">0 pts</span>
+                    </div>
 
-            <div class="time primeiro">
-                <span>Reino do Sul</span>
-                <span id="placarA">0 pts</span>
-            </div>
+                    <div class="time segundo">
+                        <span>Reino do Norte</span>
+                        <span id="placarB">0 pts</span>
+                    </div>
 
-            <div class="time segundo">
-                <span>Reino do Norte</span>
-                <span id="placarB">0 pts</span>
+                </div>
+
+                <div class="btnp">
+                    <button onclick="zerarPlacar()">
+                        Reiniciar Pontuação
+                    </button>
+                    <button class="reiniciar" onclick="reiniciarJogo()">Reiniciar Jogo</button>
+                </div>
+            
+            
+
             </div>
 
         </div>
 
-        <div class="btnp">
-            <button onclick="zerarPlacar()">
-                Reiniciar Pontuação
+        <div class="add-dim">
+
+            <select id="timeSelecionado">
+                <option value="equipeA">Reino do Sul</option>
+                <option value="equipeB">Reino do Norte</option>
+            </select>
+
+            <input
+                type="number"
+                id="quantidade"
+                value=""
+                min="1"
+                placeholder="Pontuação">
+
+            <button onclick="alterarPontuacao('adicionar')">
+                Adicionar
             </button>
-            <button class="reiniciar" onclick="reiniciarJogo()">Reiniciar Jogo</button>
+
+            <button onclick="alterarPontuacao('remover')">
+                Remover
+            </button>
+
         </div>
-    
-       
+    </main>
+    <footer>
+        <p>Batalha Bíblica v1.0</p>
+        <p>Desenvolvido por Eduarda Nogueira • © 2026</p>
+        <p>@eduarda_eng.software</p>
+    </footer>
 
-    </div>
+    <script src="../js/placar.js"></script>
 
-</div>
+    <script>
+    function atualizarRanking() {
 
-<div class="add-dim">
+        const primeiro = document.querySelector(".primeiro");
+        const segundo = document.querySelector(".segundo");
 
-    <select id="timeSelecionado">
-        <option value="equipeA">Reino do Sul</option>
-        <option value="equipeB">Reino do Norte</option>
-    </select>
+        if (placar.reinoSul > placar.reinoNorte) {
 
-    <input
-        type="number"
-        id="quantidade"
-        value=""
-        min="1"
-        placeholder="Pontuação">
+            primeiro.innerHTML = `
+                <span>🥇 Reino do Sul</span>
+                <span id="placarA">${placar.reinoSul} pts</span>
+            `;
 
-    <button onclick="alterarPontuacao('adicionar')">
-        Adicionar
-    </button>
+            segundo.innerHTML = `
+                <span>🥈 Reino do Norte</span>
+                <span id="placarB">${placar.reinoNorte} pts</span>
+            `;
 
-    <button onclick="alterarPontuacao('remover')">
-        Remover
-    </button>
+        } else if (placar.reinoNorte > placar.reinoSul) {
 
-</div>
+            primeiro.innerHTML = `
+                <span>🥇 Reino do Norte</span>
+                <span id="placarB">${placar.reinoNorte} pts</span>
+            `;
 
+            segundo.innerHTML = `
+                <span>🥈 Reino do Sul</span>
+                <span id="placarA">${placar.reinoSul} pts</span>
+            `;
 
-<script src="../js/placar.js"></script>
+        } else {
 
-<script>
-function atualizarRanking() {
+            primeiro.innerHTML = `
+                <span>🤝 Reino do Sul</span>
+                <span id="placarA">${placar.reinoSul} pts</span>
+            `;
 
-    const primeiro = document.querySelector(".primeiro");
-    const segundo = document.querySelector(".segundo");
+            segundo.innerHTML = `
+                <span>🤝 Reino do Norte</span>
+                <span id="placarB">${placar.reinoNorte} pts</span>
+            `;
 
-    if (placar.reinoSul > placar.reinoNorte) {
-
-        primeiro.innerHTML = `
-            <span>🥇 Reino do Sul</span>
-            <span id="placarA">${placar.reinoSul} pts</span>
-        `;
-
-        segundo.innerHTML = `
-            <span>🥈 Reino do Norte</span>
-            <span id="placarB">${placar.reinoNorte} pts</span>
-        `;
-
-    } else if (placar.reinoNorte > placar.reinoSul) {
-
-        primeiro.innerHTML = `
-            <span>🥇 Reino do Norte</span>
-            <span id="placarB">${placar.reinoNorte} pts</span>
-        `;
-
-        segundo.innerHTML = `
-            <span>🥈 Reino do Sul</span>
-            <span id="placarA">${placar.reinoSul} pts</span>
-        `;
-
-    } else {
-
-        primeiro.innerHTML = `
-            <span>🤝 Reino do Sul</span>
-            <span id="placarA">${placar.reinoSul} pts</span>
-        `;
-
-        segundo.innerHTML = `
-            <span>🤝 Reino do Norte</span>
-            <span id="placarB">${placar.reinoNorte} pts</span>
-        `;
+        }
 
     }
 
-}
-
-atualizarRanking();
-</script>
-<script src="../js/estadoJogo.js"></script>
+    atualizarRanking();
+    </script>
+    <script src="../js/estadoJogo.js"></script>
 
 
 </body>

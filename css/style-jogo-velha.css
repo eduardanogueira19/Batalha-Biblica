@@ -1,11 +1,42 @@
 *{
     margin: 0;
 }
-body {
-    font-family: Arial, sans-serif;
-    background: #0D1F16;
-    height: 100vh;
+html, body {
+    height: 100%;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+    background-color: #0D1F16;
+    overflow: hidden;
+    flex-direction: column;
+}
+
+body{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 16px;
+}
+
+main{
+    flex: 1;
+}
+
+
+.voltar{
+    margin-top: 5px;
+    margin-left: 15px;
     width: 100vw;
+    color: #f4f4f4;
+    font-size: 1.5em;
+    font-weight: 900;
+    text-align: left;
+}
+
+
+.voltar:hover{
+    color: #7bdf99;
 }
 
 header{
@@ -16,20 +47,9 @@ header{
     align-items: center;
 }
 
-h2{
-    color: #f4f4f4;
-    font-size: 20pt;
-    font-weight: 900;
-}
-
 a{
     text-decoration: none;
 }
-
-header h2:hover{
-    color: #7bdf99;
-}
-
 
 .container {
     margin-top: 50px;
@@ -47,81 +67,6 @@ header h2:hover{
 
 }
 
-.reinoSul{
-    margin-left: 50px;
-    width: 200px;
-    height: 400px;
-    justify-content: center;
-    align-items: center;
-}
-
-.reinoSul img{
-    width: 200px;
-    height: 200px;
-}
-
-.reinoSul h2{
-    align-items: center;
-    text-align: center;
-    font-size: 16pt;
-
-}
-
-.reinoSul p{
-    align-items: center;
-    text-align: center;
-    font-size: 12pt;
-    color: #f4f4f4;
-    
-}
-
-.reinoNorte{
-    margin-right: 50px;
-    width: 200px;
-    height: 400px;
-    display: flexbox;
-    justify-content: center;
-    align-items: center;
-}
-
-.reinoNorte img{
-    width: 200px;
-    height: 200px;
-}
-
-.reinoNorte h2{
-    align-items: center;
-    text-align: center;
-    font-size: 16pt;
-
-}
-
-.reinoNorte p{
-    align-items: center;
-    text-align: center;
-    font-size: 12pt;
-    color: #f4f4f4;
-    
-}
-
-#vez{
-    margin-top: 15px;
-    text-align: center;
-
-}
-
-
-
-button{
-    margin-top: 300px;
-    width: 300px;
-    height: 50px;
-    border-radius: 10px;
-    color: #0D1F16;
-    border-color: #14381F;
-    font-weight: bold;
-    font-size: 20pt;
-}
 
 button:hover{
     background-color: #14381F;
@@ -145,7 +90,7 @@ button:hover{
     background:#fff;
     border-left:8px solid #14381F;
     border-right:8px solid #14381F;
-    font-size:14pt;
+    font-size:1.5em;
     font-weight:bold;
 }
 
@@ -191,15 +136,13 @@ button:hover{
     position: relative;
 }
 
-
 .casa::before { 
     content: attr(data-posicao);
     position: absolute;
-    font-size: 25px;
+    font-size: 1.5em;
     color: #888;
     font-weight: bold;
 }
-
 
 .casa.ocupada::before {
     display: none;
@@ -211,10 +154,16 @@ button:hover{
 }
 
 button{
+    width: 250px;
+    height: 50px;
+    border-radius: 10px;
+    color: #0D1F16;
+    border-color: #14381F;
+    font-weight: bold;
+    cursor:pointer;
     margin-top:20px;
     padding:10px 25px;
-    font-size:18px;
-    cursor:pointer;
+    font-size:1.5em;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -229,5 +178,24 @@ button{
     display: flex;
     justify-content: center;
     align-items: center;
+    color: #f4f4f4;
+    font-size: 2.5em;
 }
 
+footer{
+    color: #f4f4f4;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #14381F;
+    width: 100%;
+    height: 30px;
+    margin-top: 15px;
+}
+
+footer p{
+    margin-left: 5%;
+    margin-right: 5%;
+    font-size: 1.5em;
+}

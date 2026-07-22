@@ -7,61 +7,64 @@
     <link rel="stylesheet" href="../css/style-jogo-palavras.css">
 </head>
 <body>
-     <header>
-        <a href="../index.html"><h2 class="voltar">Voltar</h2></a>
-    </header>
+    <main>
+        <div class="container">
+            <a class="voltar" href="../index.html"><h2>Voltar</h2></a>
+            <div class="ranking">
 
-    <div class="container">
+                <div class="time primeiro" id="timeA">
+                    <span>Reino do Sul</span>
+                    <span id="placarA">0 pts</span>
+                </div>
 
-        <div class="ranking">
+                <div class="time segundo" id="timeB">
+                    <span>Reino do Norte</span>
+                    <span id="placarB">0 pts</span>
+                </div>
 
-            <div class="time primeiro" id="timeA">
-                <span>Reino do Sul</span>
-                <span id="placarA">0 pts</span>
             </div>
 
-            <div class="time segundo" id="timeB">
-                <span>Reino do Norte</span>
-                <span id="placarB">0 pts</span>
+            
+            <div class="descartadas">
+                <h3>Letras descartadas</h3>
+
+                <div id="letrasErradas"></div>
             </div>
 
-        </div>
+            <div class="painel">
 
-        
-        <div class="descartadas">
-            <h3>Letras descartadas</h3>
+                <div id="painelPalavra">
+                    
+                </div>
 
-            <div id="letrasErradas"></div>
-        </div>
-
-        <div class="painel">
-
-            <div id="painelPalavra">
-                
             </div>
 
+            <h1 id="dica"></h1>
+
+
+            <div class="entrada">
+
+                <input
+                    type="text"
+                    id="letra"
+                    maxlength="1"
+                    autocomplete="off" placeholder="LETRA" style="text-align: center;"
+                >
+                <button id="btnChutar">
+                    Chutar
+                </button>
+                <button id="btnResposta">
+                    Chutar resposta
+                </button>
+
+            </div>
         </div>
-
-        <h1 id="dica"></h1>
-
-
-        <div class="entrada">
-
-            <input
-                type="text"
-                id="letra"
-                maxlength="1"
-                autocomplete="off" placeholder="LETRA" style="text-align: center;"
-            >
-            <button id="btnChutar">
-                Chutar
-            </button>
-            <button id="btnResposta">
-                Chutar resposta
-            </button>
-
-        </div>
-    </div>
+    </main>
+    <footer>
+        <p>Batalha Bíblica v1.0</p>
+        <p>Desenvolvido por Eduarda Nogueira • © 2026</p>
+        <p>@eduarda_eng.software</p>
+    </footer>
 
     <div id="modalResposta" class="modal oculto">
 

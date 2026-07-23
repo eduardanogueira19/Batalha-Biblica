@@ -23,6 +23,7 @@ function reiniciarJogo() {
     localStorage.removeItem("estado");
     localStorage.removeItem("placar");
     localStorage.removeItem("palavrasUsadas");
+    localStorage.removeItem("perguntasUsadas");
 
     location.reload();
 

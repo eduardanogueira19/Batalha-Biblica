@@ -1,10 +1,4 @@
-const somAcerto = new Audio("../sons/acerto.mp3");
-const somErro = new Audio("../sons/letraErro.mp3");
-
-const selectTime = document.getElementById("timeSelecionado");
-
 let perguntasDisponiveis = [...perguntas];
-
 
 // Carrega as perguntas já utilizadas
 let perguntasUsadas = JSON.parse(localStorage.getItem("perguntasUsadas")) || [];
@@ -24,6 +18,7 @@ let indicePerguntaAtual;
 
 let respostaSelecionada = null;
 
+let equipeAtual = estado.equipeAtual;
 let pontos = 3;
 
 const letras = ["A","B","C","D"];
@@ -32,75 +27,90 @@ const timeB = document.getElementById("timeB");
 
 const conferirResposta = document.getElementById("conferirResposta");
 const proximaPergunta = document.getElementById("proximaPergunta");
-
+const passarPergunta = document.getElementById("passarPergunta");
 
 const alternativas = document.querySelectorAll(".alternativas button");
 
-selectTime.addEventListener("change", destacarEquipe); 
+const somAcerto = new Audio("../sons/acerto.mp3");
+const somErro = new Audio("../sons/letraErro.mp3");
+const somPassar = new Audio("../sons/passar.mp3")
 
 alternativas.forEach((botao, indice) => {
+    botao.classList.remove("selecionada");
+    botao.addEventListener("click", () => {
 
-    botao.onclick = () => {
-
-        alternativas.forEach(b =>
-            b.classList.remove("selecionada")
-        );
+        alternativas.forEach(btn => {
+            btn.classList.remove("selecionada");
+        });
 
         botao.classList.add("selecionada");
 
         respostaSelecionada = indice;
 
         conferirResposta.disabled = false;
-
-    };
+    });
 
 });
 
+
 function destacarEquipe() {
 
-    if (selectTime.value === "equipeA") {
+    timeA.classList.remove("ativa");
+    timeB.classList.remove("ativa");
+
+    if (equipeAtual === "equipeA") {
         timeA.classList.add("ativa");
-        timeB.classList.remove("ativa");
     } else {
         timeB.classList.add("ativa");
-        timeA.classList.remove("ativa");
     }
 
 }
 
-function carregarPergunta() {
+function trocarEquipe() {
 
-    if (perguntasDisponiveis.length === 0) {
+    equipeAtual =
+        equipeAtual === "equipeA"
+            ? "equipeB"
+            : "equipeA";
 
-        document.getElementById("palavra").textContent = "Fim do jogo!";
+    estado.equipeAtual = equipeAtual;
+    salvarEstado();
 
-        alternativas.forEach(botao => {
-            botao.disabled = true;
-        });
+    destacarEquipe();
 
-        conferirResposta.disabled = true;
-        proximaPergunta.disabled = true;
+}
 
-        return;
-    }
-
+function carregarPergunta(){
     indicePerguntaAtual = Math.floor(
         Math.random() * perguntasDisponiveis.length
     );
 
-    // Guarda a pergunta sorteada
     perguntaAtual = perguntasDisponiveis[indicePerguntaAtual];
 
-    // Mostra a pergunta
-    document.getElementById("palavra").textContent =
-        perguntaAtual.pergunta;
+    // Salva a pergunta como utilizada (apenas uma vez)
+    if (!perguntasUsadas.includes(perguntaAtual.id)) {
+        perguntasUsadas.push(perguntaAtual.id);
 
-    // Atualiza as alternativas
-    letras.forEach((letra, i) => {
+        localStorage.setItem(
+            "perguntasUsadas",
+            JSON.stringify(perguntasUsadas)
+        );
+    }
+
+    document.getElementById("palavra").textContent =
+    perguntaAtual.pergunta;
+
+    // Remove da lista desta partida
+    perguntasDisponiveis.splice(indicePerguntaAtual, 1);
+
+    const letras = ["A","B","C","D"];
+
+    letras.forEach((letra,i)=>{
 
         const botao = document.getElementById(letra);
 
-        botao.textContent = `${letra} - ${perguntaAtual.alternativas[i]}`;
+        botao.textContent =
+            `${letra} - ${perguntaAtual.alternativas[i]}`;
 
         botao.classList.remove(
             "selecionada",
@@ -116,15 +126,17 @@ function carregarPergunta() {
 
     conferirResposta.disabled = true;
     proximaPergunta.disabled = true;
+    passarPergunta.disabled = false;
 
 }
-
 
 
 conferirResposta.onclick = ()=>{
 
     if(respostaSelecionada == null)
         return;
+
+    const letras = ["A","B","C","D"];
 
     letras.forEach((letra,i)=>{
 
@@ -135,6 +147,7 @@ conferirResposta.onclick = ()=>{
         if(i == perguntaAtual.correta){
 
             botao.classList.add("correta");
+            
 
         }
 
@@ -142,23 +155,21 @@ conferirResposta.onclick = ()=>{
 
     if(respostaSelecionada != perguntaAtual.correta){
 
-        somErro.currentTime = 0;
-        somErro.play();
-
         document
             .getElementById(letras[respostaSelecionada])
             .classList.add("errada");
+            somErro.currentTime = 0;
+            somErro.play();
 
     }else{
+
         somAcerto.currentTime = 0;
         somAcerto.play();
-        adicionarPonto(selectTime.value, pontos);
+
+        adicionarPonto(estado.equipeAtual, pontos);
         atualizarPlacar();
 
     }
-
-    // Descarta a pergunta
-    perguntasDisponiveis.splice(indicePerguntaAtual,1);
 
     conferirResposta.disabled = true;
     proximaPergunta.disabled = false;
@@ -167,6 +178,7 @@ conferirResposta.onclick = ()=>{
 
 proximaPergunta.onclick = ()=>{
     pontos = 3;
+    trocarEquipe();
 
     if(perguntasDisponiveis.length == 0){
 
@@ -177,6 +189,20 @@ proximaPergunta.onclick = ()=>{
     }
 
     carregarPergunta();
+
+};
+
+passarPergunta.onclick = ()=>{
+    somPassar.currentTime = 0;
+    somPassar.play();
+    trocarEquipe();
+    
+    pontos--;
+
+    if (pontos === 1){
+        proximaPergunta.disabled = false;
+        passarPergunta.disabled = true;
+    } 
 
 };
 

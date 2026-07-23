@@ -1,20 +1,18 @@
 *{
     margin: 0;
-    font-family:Arial, Helvetica, sans-serif;
 }
 
 body{
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-}
-
-main{
-    flex: 1;
+    background-color: #0D1F16;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 16px;
 }
 
 .voltar{
-    margin-top: 5px;
+    margin-top: 15px;
     margin-left: 15px;
     width: 100vw;
     color: #f4f4f4;
@@ -23,9 +21,15 @@ main{
     text-align: left;
 }
 
+.voltar:hover{
+    color: #3e8d56;
+}
+
+main{
+    flex: 1;
+}
+
 header{
-    margin-left: 30px;
-    height: 50px;
     display: flex;
     justify-content: left;
     align-items: center;
@@ -33,24 +37,13 @@ header{
 
 h1{
     color: #0D1F16;
-    font-size: 30pt;
-    font-weight: 900;
-}
-
-h2{
-    color: #f4f4f4;
-    font-size: 20pt;
+    font-size: 2.5em;
     font-weight: 900;
 }
 
 a{
     text-decoration: none;
 }
-
-h2:hover{
-    color: #3e8d56;
-}
-
 
 .container{
     display:flex;
@@ -82,16 +75,11 @@ h2:hover{
     display:flex;
     justify-content:space-between;
     align-items:center;
-
-    padding:18px 25px;
-
+    padding:15px 25px;
     border-radius:12px;
-
     background:#fff;
-
     border-left:8px solid #14381F;
-
-    font-size:22px;
+    font-size:1.5em;
     font-weight:bold;
 }
 
@@ -105,7 +93,6 @@ h2:hover{
     border-right-color: #f4f4f4;
 }
 
-
 button{
     width: 300px;
     height: 50px;
@@ -113,11 +100,10 @@ button{
     color: #0D1F16;
     border-color: #14381F;
     font-weight: bold;
-    font-size: 20pt;
+    font-size: 1.5em;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
-    
+    margin-top: 10px;
 }
 
 button:hover{
@@ -132,7 +118,7 @@ button:hover{
     align-items: center;
     justify-content: center;
     text-align: center;
-    font-size: 20pt;
+    font-size: 1.5em;
 }
 
 .add-dim button{

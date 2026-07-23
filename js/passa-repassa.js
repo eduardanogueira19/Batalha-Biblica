@@ -1,17 +1,13 @@
 let perguntasDisponiveis = [...perguntas];
 
-// Carrega as perguntas já utilizadas
 let perguntasUsadas = JSON.parse(localStorage.getItem("perguntasUsadas")) || [];
 
-// Remove da lista as perguntas que já foram utilizadas
 perguntasDisponiveis = perguntas.filter((_, indice) => !perguntasUsadas.includes(indice));
 
-// Se todas já foram utilizadas, reinicia o ciclo
-if (perguntasDisponiveis.length === 0) {
-    localStorage.removeItem("perguntasUsadas");
-    perguntasUsadas = [];
-    perguntasDisponiveis = [...perguntas];
-}
+perguntasDisponiveis.sort((a, b) => a.id - b.id);
+
+
+
 
 let perguntaAtual;
 let indicePerguntaAtual;
@@ -21,6 +17,7 @@ let respostaSelecionada = null;
 let equipeAtual = estado.equipeAtual;
 let pontos = 3;
 
+const palavra = document.getElementById("palavra");
 const letras = ["A","B","C","D"];
 const timeA = document.getElementById("timeA");
 const timeB = document.getElementById("timeB");
@@ -80,37 +77,38 @@ function trocarEquipe() {
 
 }
 
-function carregarPergunta(){
-    indicePerguntaAtual = Math.floor(
-        Math.random() * perguntasDisponiveis.length
-    );
+function carregarPergunta() {
 
-    perguntaAtual = perguntasDisponiveis[indicePerguntaAtual];
+    if (perguntasDisponiveis.length === 0) {
 
-    // Salva a pergunta como utilizada (apenas uma vez)
-    if (!perguntasUsadas.includes(perguntaAtual.id)) {
-        perguntasUsadas.push(perguntaAtual.id);
+        palavra.textContent = "🏆 Fim do jogo! Todas as perguntas foram respondidas.";
+        palavra.classList.add("fim-jogo");
 
-        localStorage.setItem(
-            "perguntasUsadas",
-            JSON.stringify(perguntasUsadas)
-        );
+        letras.forEach(letra => {
+            const botao = document.getElementById(letra);
+            botao.textContent = "";
+            botao.disabled = true;
+        });
+
+        conferirResposta.disabled = true;
+        proximaPergunta.disabled = true;
+        passarPergunta.disabled = true;
+
+        return;
     }
 
-    document.getElementById("palavra").textContent =
-    perguntaAtual.pergunta;
+    palavra.classList.remove("fim-jogo");
 
-    // Remove da lista desta partida
-    perguntasDisponiveis.splice(indicePerguntaAtual, 1);
+    indicePerguntaAtual = 0;
+    perguntaAtual = perguntasDisponiveis[0];
 
-    const letras = ["A","B","C","D"];
+    palavra.textContent = perguntaAtual.pergunta;
 
-    letras.forEach((letra,i)=>{
+    letras.forEach((letra, i) => {
 
         const botao = document.getElementById(letra);
 
-        botao.textContent =
-            `${letra} - ${perguntaAtual.alternativas[i]}`;
+        botao.textContent = `${letra} - ${perguntaAtual.alternativas[i]}`;
 
         botao.classList.remove(
             "selecionada",
@@ -135,6 +133,21 @@ conferirResposta.onclick = ()=>{
 
     if(respostaSelecionada == null)
         return;
+
+    // Marca a pergunta como utilizada
+    const indiceOriginal = perguntas.indexOf(perguntaAtual);
+
+    if (!perguntasUsadas.includes(indiceOriginal)) {
+        perguntasUsadas.push(indiceOriginal);
+
+        localStorage.setItem(
+            "perguntasUsadas",
+            JSON.stringify(perguntasUsadas)
+        );
+    }
+
+    // Remove da lista da partida
+    perguntasDisponiveis.splice(indicePerguntaAtual, 1);
 
     const letras = ["A","B","C","D"];
 
@@ -176,20 +189,10 @@ conferirResposta.onclick = ()=>{
 
 };
 
-proximaPergunta.onclick = ()=>{
+proximaPergunta.onclick = () => {
     pontos = 3;
     trocarEquipe();
-
-    if(perguntasDisponiveis.length == 0){
-
-        alert("Fim do jogo!");
-
-        return;
-
-    }
-
     carregarPergunta();
-
 };
 
 passarPergunta.onclick = ()=>{

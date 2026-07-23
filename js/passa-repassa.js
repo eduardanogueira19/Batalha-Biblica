@@ -145,9 +145,8 @@ conferirResposta.onclick = ()=>{
             JSON.stringify(perguntasUsadas)
         );
     }
-
-    // Remove da lista da partida
-    perguntasDisponiveis.splice(indicePerguntaAtual, 1);
+    
+    perguntasDisponiveis.shift();
 
     const letras = ["A","B","C","D"];
 
@@ -190,6 +189,10 @@ conferirResposta.onclick = ()=>{
 };
 
 proximaPergunta.onclick = () => {
+
+    // Move a pergunta atual para o fim da fila
+    perguntasDisponiveis.push(perguntasDisponiveis.shift());
+
     pontos = 3;
     trocarEquipe();
     carregarPergunta();

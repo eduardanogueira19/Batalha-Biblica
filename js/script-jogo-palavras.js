@@ -75,7 +75,36 @@ const rodadas = [
         "CACAU",
         "FRAMBOESA"
     ]
-}
+},
+
+{
+    dica: "Lugar",
+    palavras: [
+        "Jardim do Éden",
+        "Jerusalém",
+        "Ilha de Patmos"
+    ]
+},
+
+{
+    dica: "Profissão",
+    palavras: [
+        "Carpinteiro",
+        "Engenheiro",
+        "Farmacêutico",
+        "Juíz"
+    ]
+},
+
+{
+    dica: "Escola",
+    palavras: [
+        "Cantina",
+        "Diretoria",
+        "Biblioteca",
+        "Carteira"
+    ]
+},
 
 ];
 

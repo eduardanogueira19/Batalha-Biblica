@@ -39,6 +39,25 @@ function salvarEstadoJogo() {
 }
 
 
+let estadoRoda = JSON.parse(localStorage.getItem("estadoRoda"));
+
+if (!estadoRoda) {
+
+    estadoRoda = {
+        indiceRodada: 0
+    };
+
+}
+
+function salvarEstadoRoda() {
+
+    localStorage.setItem(
+        "estadoRoda",
+        JSON.stringify(estadoRoda)
+    );
+
+}
+
 function reiniciarJogo() {
 
     if (!confirm("Deseja realmente reiniciar o jogo todo?")) {
@@ -47,6 +66,7 @@ function reiniciarJogo() {
 
     localStorage.removeItem("estado");
     localStorage.removeItem("estadoJogo"); // novo
+    localStorage.removeItem("estadoRoda");//novo
     localStorage.removeItem("placar");
     localStorage.removeItem("palavrasUsadas");
     localStorage.removeItem("perguntasUsadas");

@@ -104,53 +104,41 @@ const rodadas = [
         "Biblioteca",
         "Carteira"
     ]
-},
+}
 
 ];
 
 let rodadaAtual;
 let palavrasAtual = [];
-
 let letrasDescobertas = [];
-
 let letrasErradas = [];
-
-let indiceRodada = 0;
-
+let novasLetras = [];
+let indiceRodada = estadoRoda.indiceRodada;
 let equipeAtual = estado.equipeAtual;
 
-let novasLetras = [];
 
 const painel = document.getElementById("painelPalavra");
-
 const dica = document.getElementById("dica");
-
 const input = document.getElementById("letra");
-
 const btnChutar = document.getElementById("btnChutar");
-
 const painelErradas = document.getElementById("letrasErradas");
-
 const somAcerto = new Audio("../sons/letraAcerto.mp3");
 const somErro = new Audio("../sons/letraErro.mp3");
 const somVitoria = new Audio("../sons/vitoria.mp3");
-
 const modalResposta = document.getElementById("modalResposta");
 const camposResposta = document.getElementById("camposResposta");
-
 const btnResposta = document.getElementById("btnResposta");
 const btnConfirmarResposta = document.getElementById("btnConfirmarResposta");
 const btnCancelarResposta = document.getElementById("btnCancelarResposta");
 
+
 btnChutar.addEventListener("click", chutarLetra);
 btnResposta.addEventListener("click", abrirModalResposta);
-
 btnCancelarResposta.addEventListener("click", ()=>{
 
     modalResposta.classList.add("oculto");
 
 });
-
 btnConfirmarResposta.addEventListener("click", confirmarResposta);
 
 input.addEventListener("keypress", function(e){
@@ -415,10 +403,14 @@ function verificarVitoria() {
 function proximaRodada() {
 
     indiceRodada++;
+    estadoRoda.indiceRodada = indiceRodada;
+    salvarEstadoRoda();
 
     if (indiceRodada >= rodadas.length) {
         alert("Fim do jogo!");
         indiceRodada = 0;
+        estadoRoda.indiceRodada = indiceRodada;
+        salvarEstadoRoda();
     }
 
     iniciarRodada();

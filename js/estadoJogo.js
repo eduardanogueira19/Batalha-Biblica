@@ -14,6 +14,31 @@ function salvarEstado() {
 
 }
 
+// =====================
+// Estado do jogo de palavras
+// =====================
+
+let estadoJogo = JSON.parse(localStorage.getItem("estadoJogo"));
+
+if (!estadoJogo) {
+
+    estadoJogo = {
+        palavrasRestantes: [...palavras],
+        equipesDaRodada: 0
+    };
+
+}
+
+function salvarEstadoJogo() {
+
+    localStorage.setItem(
+        "estadoJogo",
+        JSON.stringify(estadoJogo)
+    );
+
+}
+
+
 function reiniciarJogo() {
 
     if (!confirm("Deseja realmente reiniciar o jogo todo?")) {
@@ -21,6 +46,7 @@ function reiniciarJogo() {
     }
 
     localStorage.removeItem("estado");
+    localStorage.removeItem("estadoJogo"); // novo
     localStorage.removeItem("placar");
     localStorage.removeItem("palavrasUsadas");
     localStorage.removeItem("perguntasUsadas");

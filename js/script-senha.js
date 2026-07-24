@@ -1,27 +1,3 @@
-const palavras = [
-    "Pequeno", "água", "livro", "Salomão","Nabote",
-    "Davi", "Deus","templo", "machado", "arca",
-    "Taça", "parque", "rei", "corvo","Monte",
-    "Ar", "bicicleta", "vitória", "Israel", "pão",
-    "Colher", "lepra", "bíblia", "Jezabel", "laranja",
-    "Chave", "gelado", "Bahia", "família","profeta",
-    "Hélice", "Justo", "boneca", "céu", "exército",
-    "Língua", "motorista", "povo", "Babilônia",
-    "Atraso", "mosca", "divisão", "celular", "terça",
-    "Quadro", "queda", "socorro", "aplicativo", "obreiro",
-    "Refresco", "vida", "história", "violão", "porta",
-    "Sal", "microfone", "espião", "ovelha", "som",
-    "Pimenta", "pé", "filho", "inimigo", "cantina",
-    "Gravata", "Eliseu", "milagre", "viúva", "pastor",
-    "Chocolate", "banco", "tapete", "vaso", "biscoito",
-    "Manga", "escuridão", "cura", "mesa", "teclado",
-    "Café", "cadeira", "Elias", "Guerra", "criança",
-    "Ataque", "rio", "caneta", "fone", "mapa",
-    "Conquista", "acampamento", "tanque", "barco",
-    "Mulher", "papel", "música", "direção", "mídia"
-
-];
-
 const somAcerto = new Audio("../sons/acerto.mp3");
 const somTimer = new Audio("../sons/timer.mp3");
 const somInicio = new Audio("../sons/inicio.mp3");
@@ -37,22 +13,19 @@ class Jogo {
         this.equipeAtual = estado.equipeAtual;
         this.timeA = document.getElementById("timeA");
         this.timeB = document.getElementById("timeB");
+
         this.listaSul = document.getElementById("listaSul");
         this.listaNorte = document.getElementById("listaNorte");
 
         this.limitePalavras = 5;
         this.palavrasMostradas = 0;
-        this.indicePalavra = 0;
-
         this.pendentes = [];
-
         this.palavraAtual = "";
         this.contadorPalavras = document.getElementById("contadorPalavras");
         this.palavraAtualEhPendente = false;
-
-        this.palavrasDisponiveis = [...palavras];
-
+        this.palavrasDisponiveis = [...estadoJogo.palavrasRestantes];
         this.palavra = document.getElementById("palavra");
+        
         this.timer = document.querySelector(".timer");
 
         this.btnIniciar = document.getElementById("iniciar");
@@ -78,10 +51,8 @@ class Jogo {
         });
 
         this.destacarEquipe();
-        this.carregarPalavrasDaRodada();
-        this.equipesDaRodada = 0;
-        this.limparNaProximaRodada = false;
-
+        this.equipesDaRodada = estadoJogo.equipesDaRodada;
+        this.limparNaProximaRodada = estadoJogo.limparNaProximaRodada;
 
     }
 
@@ -98,18 +69,10 @@ class Jogo {
 
     }
 
-    carregarPalavrasDaRodada() {
-
-        this.palavrasDisponiveis = palavras.slice(
-            this.indicePalavra,
-            this.indicePalavra + this.limitePalavras
-        );
-
-        this.indicePalavra += this.limitePalavras;
-
-    }
-
     iniciarRodada(){
+
+
+        console.log("Iniciou a rodada");
 
        if (this.limparNaProximaRodada) {
 
@@ -120,9 +83,10 @@ class Jogo {
 
         }
 
-
         if (this.palavrasDisponiveis.length === 0) {
-            this.carregarPalavrasDaRodada();
+            this.palavra.textContent = "Todas as palavras já foram utilizadas!";
+            this.btnIniciar.disabled = true;
+            return;
         }
 
         this.destacarEquipe();
@@ -161,6 +125,7 @@ class Jogo {
     }
 
    mostrarPalavra(){
+        console.log("Mostrar palavra");
 
         if(
             this.palavrasMostradas >= this.limitePalavras &&
@@ -179,6 +144,9 @@ class Jogo {
             this.palavraAtual = this.palavrasDisponiveis[indice];
 
             this.palavrasDisponiveis.splice(indice,1);
+
+            estadoJogo.palavrasRestantes = [...this.palavrasDisponiveis];
+            salvarEstadoJogo();
 
             this.palavrasMostradas++;
 
@@ -284,15 +252,19 @@ class Jogo {
         somFim.play();
 
         this.equipesDaRodada++;
+        estadoJogo.equipesDaRodada = this.equipesDaRodada;
+
 
         if (this.equipesDaRodada === 2) {
 
             this.equipesDaRodada = 0;
-            this.carregarPalavrasDaRodada();
-
             this.limparNaProximaRodada = true;
 
         }
+
+        estadoJogo.equipesDaRodada = this.equipesDaRodada;
+        estadoJogo.limparNaProximaRodada = this.limparNaProximaRodada;
+        salvarEstadoJogo();
 
         clearInterval(this.intervalo);
 
@@ -308,10 +280,7 @@ class Jogo {
 
         this.pendentes = [];
 
-        if (this.palavrasDisponiveis.length === 0) {
-            this.carregarPalavrasDaRodada();
-        }
-
+    
         this.trocarEquipe();
 
         this.btnIniciar.disabled = false;
@@ -319,6 +288,13 @@ class Jogo {
 
     }
 
+}
+
+function salvarEstadoJogo() {
+    localStorage.setItem(
+        "estadoJogo",
+        JSON.stringify(estadoJogo)
+    );
 }
 
 const jogo = new Jogo();

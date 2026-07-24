@@ -16,7 +16,7 @@ let respostaSelecionada = null;
 
 let equipeAtual = estado.equipeAtual;
 let pontos = 3;
-
+const referencia = document.getElementById("referencia");
 const palavra = document.getElementById("palavra");
 const letras = ["A","B","C","D"];
 const timeA = document.getElementById("timeA");
@@ -104,6 +104,9 @@ function carregarPergunta() {
 
     palavra.textContent = perguntaAtual.pergunta;
 
+    referencia.textContent = "";
+    referencia.style.display = "none";
+
     letras.forEach((letra, i) => {
 
         const botao = document.getElementById(letra);
@@ -183,6 +186,9 @@ conferirResposta.onclick = ()=>{
 
     conferirResposta.disabled = true;
     proximaPergunta.disabled = false;
+
+    referencia.textContent = perguntaAtual.referencia;
+    referencia.style.display = "block";
 
 };
 

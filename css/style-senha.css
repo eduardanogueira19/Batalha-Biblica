@@ -248,6 +248,11 @@ li{
     padding:6px;
     border-radius:8px;
     color:white;
+    
+}
+
+#listaNorte, #listaSul{
+    font-size: 0.7em;
 }
 
 .acerto{

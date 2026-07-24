@@ -133,6 +133,11 @@ a{
     width: 300px;
 }
 
+.btn-alter{
+    width: 400px;
+    height: 80px;
+}
+
 button{
     width: 250px;
     height: 50px;
@@ -232,4 +237,11 @@ footer p{
     margin-right: 5%;
     font-size: 1em;
     text-align: center;
+}
+
+#palavra.fim-jogo{
+    font-size: 3rem;
+    color: #0D1F16;
+    text-align: center;
+    font-weight: bold;
 }

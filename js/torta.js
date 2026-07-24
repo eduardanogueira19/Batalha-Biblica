@@ -1,23 +1,11 @@
-const somAcerto = new Audio("../sons/acerto.mp3");
-const somErro = new Audio("../sons/letraErro.mp3");
-
-const selectTime = document.getElementById("timeSelecionado");
-
 let perguntasDisponiveis = [...perguntas];
 
 
-// Carrega as perguntas já utilizadas
 let perguntasUsadas = JSON.parse(localStorage.getItem("perguntasUsadas")) || [];
 
-// Remove da lista as perguntas que já foram utilizadas
 perguntasDisponiveis = perguntas.filter((_, indice) => !perguntasUsadas.includes(indice));
 
-// Se todas já foram utilizadas, reinicia o ciclo
-if (perguntasDisponiveis.length === 0) {
-    localStorage.removeItem("perguntasUsadas");
-    perguntasUsadas = [];
-    perguntasDisponiveis = [...perguntas];
-}
+perguntasDisponiveis.sort((a, b) => a.id - b.id);
 
 let perguntaAtual;
 let indicePerguntaAtual;
@@ -26,6 +14,7 @@ let respostaSelecionada = null;
 
 let pontos = 3;
 
+const palavra = document.getElementById("palavra");
 const letras = ["A","B","C","D"];
 const timeA = document.getElementById("timeA");
 const timeB = document.getElementById("timeB");
@@ -35,6 +24,11 @@ const proximaPergunta = document.getElementById("proximaPergunta");
 
 
 const alternativas = document.querySelectorAll(".alternativas button");
+
+const somAcerto = new Audio("../sons/acerto.mp3");
+const somErro = new Audio("../sons/letraErro.mp3");
+
+const selectTime = document.getElementById("timeSelecionado");
 
 selectTime.addEventListener("change", destacarEquipe); 
 
@@ -72,9 +66,12 @@ function carregarPergunta() {
 
     if (perguntasDisponiveis.length === 0) {
 
-        document.getElementById("palavra").textContent = "Fim do jogo!";
+        palavra.textContent = "🏆 Fim do jogo! Todas as perguntas foram respondidas.";
+        palavra.classList.add("fim-jogo");
 
-        alternativas.forEach(botao => {
+        letras.forEach(letra => {
+            const botao = document.getElementById(letra);
+            botao.textContent = "";
             botao.disabled = true;
         });
 
@@ -84,18 +81,13 @@ function carregarPergunta() {
         return;
     }
 
-    indicePerguntaAtual = Math.floor(
-        Math.random() * perguntasDisponiveis.length
-    );
+    palavra.classList.remove("fim-jogo");
 
-    // Guarda a pergunta sorteada
-    perguntaAtual = perguntasDisponiveis[indicePerguntaAtual];
+    indicePerguntaAtual = 0;
+    perguntaAtual = perguntasDisponiveis[0];
 
-    // Mostra a pergunta
-    document.getElementById("palavra").textContent =
-        perguntaAtual.pergunta;
+    palavra.textContent = perguntaAtual.pergunta;
 
-    // Atualiza as alternativas
     letras.forEach((letra, i) => {
 
         const botao = document.getElementById(letra);
@@ -115,7 +107,7 @@ function carregarPergunta() {
     respostaSelecionada = null;
 
     conferirResposta.disabled = true;
-    proximaPergunta.disabled = true;
+    proximaPergunta.disabled = false;
 
 }
 
@@ -125,6 +117,20 @@ conferirResposta.onclick = ()=>{
 
     if(respostaSelecionada == null)
         return;
+
+    // Marca a pergunta como utilizada
+    const indiceOriginal = perguntas.indexOf(perguntaAtual);
+
+    if (!perguntasUsadas.includes(indiceOriginal)) {
+        perguntasUsadas.push(indiceOriginal);
+
+        localStorage.setItem(
+            "perguntasUsadas",
+            JSON.stringify(perguntasUsadas)
+        );
+    }
+
+    perguntasDisponiveis.shift();
 
     letras.forEach((letra,i)=>{
 
@@ -142,12 +148,11 @@ conferirResposta.onclick = ()=>{
 
     if(respostaSelecionada != perguntaAtual.correta){
 
-        somErro.currentTime = 0;
-        somErro.play();
-
         document
             .getElementById(letras[respostaSelecionada])
             .classList.add("errada");
+            somErro.currentTime = 0;
+            somErro.play();
 
     }else{
         somAcerto.currentTime = 0;
@@ -157,27 +162,18 @@ conferirResposta.onclick = ()=>{
 
     }
 
-    // Descarta a pergunta
-    perguntasDisponiveis.splice(indicePerguntaAtual,1);
-
+    
     conferirResposta.disabled = true;
     proximaPergunta.disabled = false;
 
 };
 
-proximaPergunta.onclick = ()=>{
-    pontos = 3;
+proximaPergunta.onclick = () => {
 
-    if(perguntasDisponiveis.length == 0){
-
-        alert("Fim do jogo!");
-
-        return;
-
-    }
+    // Move a pergunta atual para o fim da fila
+    perguntasDisponiveis.push(perguntasDisponiveis.shift());
 
     carregarPergunta();
-
 };
 
 

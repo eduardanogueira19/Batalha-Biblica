@@ -147,9 +147,7 @@ conferirResposta.onclick = ()=>{
     }
     
     perguntasDisponiveis.shift();
-
-    const letras = ["A","B","C","D"];
-
+    
     letras.forEach((letra,i)=>{
 
         const botao = document.getElementById(letra);

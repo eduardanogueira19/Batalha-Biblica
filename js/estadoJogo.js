@@ -21,8 +21,6 @@ function salvarEstado() {
 let estadoJogo = JSON.parse(localStorage.getItem("estadoJogo"));
 
 if (!estadoJogo) {
-    estadoJogo = {
-        palavrasRestantes: [...palavras],
         equipesDaRodada: 0,
         limparNaProximaRodada: false
     };

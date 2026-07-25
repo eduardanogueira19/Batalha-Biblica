@@ -1,3 +1,19 @@
+let estadoJogo = JSON.parse(localStorage.getItem("estadoJogo"));
+
+if (!estadoJogo) {
+
+    estadoJogo = {
+        palavrasRestantes: [...palavras],
+        equipesDaRodada: 0,
+        limparNaProximaRodada: false
+    };
+
+}
+
+function salvarEstadoJogo() {
+    localStorage.setItem("estadoJogo", JSON.stringify(estadoJogo));
+}
+
 const palavras = [
     "Pequeno", "água", "livro", "Salomão","Nabote",
 
@@ -40,3 +56,5 @@ const palavras = [
     "Mulher", "papel", "música", "direção", "mídia"
 
 ];
+
+

@@ -21,11 +21,16 @@ function salvarEstado() {
 let estadoJogo = JSON.parse(localStorage.getItem("estadoJogo"));
 
 if (!estadoJogo) {
-        equipesDaRodada: 0,
-        limparNaProximaRodada: false
+
+    estadoJogo = {
+        equipesDaRodada: 0
     };
+
 }
 
+function salvarEstadoJogo() {
+    localStorage.setItem("estadoJogo", JSON.stringify(estadoJogo));
+}
 
 let estadoRoda = JSON.parse(localStorage.getItem("estadoRoda"));
 

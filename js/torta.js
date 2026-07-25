@@ -22,7 +22,7 @@ const timeB = document.getElementById("timeB");
 const conferirResposta = document.getElementById("conferirResposta");
 const proximaPergunta = document.getElementById("proximaPergunta");
 
-
+const referencia = document.getElementById("referencia");
 const alternativas = document.querySelectorAll(".alternativas button");
 
 const somAcerto = new Audio("../sons/acerto.mp3");
@@ -87,6 +87,9 @@ function carregarPergunta() {
     perguntaAtual = perguntasDisponiveis[0];
 
     palavra.textContent = perguntaAtual.pergunta;
+
+    referencia.textContent = "";
+    referencia.style.display = "none";
 
     letras.forEach((letra, i) => {
 
@@ -165,6 +168,9 @@ conferirResposta.onclick = ()=>{
     
     conferirResposta.disabled = true;
     proximaPergunta.disabled = false;
+
+    referencia.textContent = perguntaAtual.referencia;
+    referencia.style.display = "block";
 
 };
 

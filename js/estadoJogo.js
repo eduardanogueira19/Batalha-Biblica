@@ -23,9 +23,15 @@ let estadoJogo = JSON.parse(localStorage.getItem("estadoJogo"));
 if (!estadoJogo) {
 
     estadoJogo = {
-        equipesDaRodada: 0
+        palavrasRestantes: typeof palavras !== "undefined" ? [...palavras] : [],
+        equipesDaRodada: 0,
+        limparNaProximaRodada: false
     };
 
+}
+
+function salvarEstadoJogo() {
+    localStorage.setItem("estadoJogo", JSON.stringify(estadoJogo));
 }
 
 function salvarEstadoJogo() {

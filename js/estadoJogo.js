@@ -62,8 +62,7 @@ function reiniciarJogo() {
     localStorage.removeItem("estadoRoda");//novo
     localStorage.removeItem("placar");
     localStorage.removeItem("palavrasUsadas");
-    localStorage.removeItem("perguntasUsadas");
-
+    
     location.reload();
 
 }

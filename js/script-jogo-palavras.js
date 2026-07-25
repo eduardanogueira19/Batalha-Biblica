@@ -200,6 +200,8 @@ function iniciarRodada() {
 
     palavrasAtual = rodadaAtual.palavras;
 
+    palavrasAtual = palavrasAtual.map(p => p.toUpperCase());
+
     dica.textContent = rodadaAtual.dica;
 
     letrasErradas = [];
@@ -208,7 +210,17 @@ function iniciarRodada() {
 
     for (let palavra of palavrasAtual) {
 
-        letrasDescobertas.push(new Array(palavra.length).fill(""));
+        const descoberta = [];
+
+        for (let letra of palavra) {
+            if (letra === " ") {
+                descoberta.push(" "); // espaço já revelado
+            } else {
+                descoberta.push("");
+            }
+        }
+
+        letrasDescobertas.push(descoberta);
 
     }
 
@@ -231,22 +243,24 @@ function desenharPainel() {
 
         for (let j = 0; j < palavrasAtual[i].length; j++) {
 
-            const caixa = document.createElement("div");
+            if (palavrasAtual[i][j] === " ") {
+                continue;
+            }
 
+            const caixa = document.createElement("div");
             caixa.className = "letra";
+
+            if (j > 0 && palavrasAtual[i][j - 1] === " ") {
+                caixa.classList.add("inicio-palavra");
+            }
 
             caixa.textContent = letrasDescobertas[i][j];
 
-            
-
             linha.appendChild(caixa);
-
         }
 
         painel.appendChild(linha);
-
     }
-
 }
 
 function abrirModalResposta(){
@@ -316,7 +330,7 @@ function revelarLetra(letra){
 
         for(let j=0;j<palavrasAtual[i].length;j++){
 
-            const atual = removerAcentos(palavrasAtual[i][j]);
+            const atual = removerAcentos(palavrasAtual[i][j].toUpperCase());
 
             if(atual === letra &&
                letrasDescobertas[i][j] === ""){
@@ -358,9 +372,16 @@ function revelarLetra(letra){
     novasLetras.forEach(pos => {
 
         const linha = painel.children[pos.linha];
-        const caixa = linha.children[pos.coluna];
 
-        caixa.classList.add("revelada");
+        let indiceVisual = 0;
+
+        for (let k = 0; k < pos.coluna; k++) {
+            if (palavrasAtual[pos.linha][k] !== " ") {
+                indiceVisual++;
+            }
+        }
+
+        linha.children[indiceVisual].classList.add("revelada");
 
     });
 
